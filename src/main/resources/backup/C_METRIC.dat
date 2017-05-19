@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "585b331384ae34d29ece8c7f" }, "_class" : "com.elong.hotel.common.po.Metric", "name" : "orderTotal", "displayName" : "订单数", "formula" : "", "order" : "1" }
+{ "_id" : { "$oid" : "585b332e84ae34d29ece8c80" }, "_class" : "com.elong.hotel.common.po.Metric", "name" : "nightTotal", "displayName" : "间夜数", "formula" : "", "order" : "2" }
+{ "_id" : { "$oid" : "585b348084ae34d29ece8c81" }, "_class" : "com.elong.hotel.common.po.Metric", "name" : "submitLength", "displayName" : "成单时长", "formula" : "", "order" : "3" }
+{ "_id" : { "$oid" : "585b349184ae34d29ece8c82" }, "_class" : "com.elong.hotel.common.po.Metric", "name" : "confirmLength", "displayName" : "确认时长", "formula" : "", "order" : "4" }

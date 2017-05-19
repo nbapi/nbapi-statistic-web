@@ -4,7 +4,7 @@ BASEDIR=/home/work/NBAPI
 SER_NAME=nbapi-statistic-web
 SHUTDOWN_PORT=8074
 HTTP_PORT=9074
-AJP_PORT=10074
+AJP_PORT=7074
 SER_BASE_R_TMP=${BASEDIR}/${SER_NAME}
 SER_BASE_R="${SER_BASE_R_TMP//\//\\/}"
 #####NO_NEED_2_SET#####
@@ -61,28 +61,11 @@ cd $BASEDIR
 mkdir -p $SER_NAME
 #mv car.war car
 cd $SER_NAME
-if [ -f $SER_NAME.war ]; then
-	rm -rf "$SER_BASE_R_TMP/WEB-INF"
-	rm -rf "$SER_BASE_R_TMP/META-INF"
-	rm -rf "$SER_BASE_R_TMP/resources"
-	rm -rf "$SER_BASE_R_TMP/hc"
-	jar -xvf "$SER_NAME.war"
-fi
+jar -xvf "$SER_NAME.war"
 #unalias cp
-cp -rf "$BASEDIR/$SER_NAME/conf" "$BASEDIR/$SER_NAME/WEB-INF/classes/"
+cp -rf "$BASEDIR/$SER_NAME/env" "$BASEDIR/$SER_NAME/WEB-INF/classes/conf/custom/"
 rm "$SER_NAME.war"
 rm -rf server.xml
 $BASEDIR/$TOMCAT_NAME/bin/start_tomcat.sh &>/dev/null
-result=$?
 #/home/work/car/tomcat/bin/startup.sh
-##配置重启服务脚本
-##获取当前脚本执行路经
-cd `dirname $0`
-cur_path=`pwd`
-if [ ! -d "/home/work/hotel/script" ]; then
-	mkdir -p /home/work/hotel/script
-fi
-if [ ! -f "/home/work/hotel/script/restart_tomcat_by_port.sh" ]; then
-	cp -rf $BASEDIR/$SER_NAME/script/restart_tomcat_by_port.sh /home/work/hotel/script
-fi
-exit $result
+exit $?

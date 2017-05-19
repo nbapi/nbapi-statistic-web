@@ -119,9 +119,9 @@
                resourceName="UserDatabase"/>
       </Realm>
 
-      <Host name="localhost"  appBase="{#APP_BASE#}"
+      <Host name="localhost"  appBase=""
             unpackWARs="true" autoDeploy="true">
-			<Context path="" docBase="." />
+			<Context path="" docBase="{#APP_BASE#}" />
 			<Valve 	className="org.apache.catalina.valves.AccessLogValve"
 					directory="logs"   prefix="{#PROJECT_NAME#}_access"     suffix=".log"
 					pattern="common"   resolveHosts="false" />

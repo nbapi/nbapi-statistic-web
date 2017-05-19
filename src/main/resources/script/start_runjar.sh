@@ -1,2 +1,2 @@
 #!/bin/bash
-nohup java -jar /home/work/NBAPI/{#name#}/{#name#}-jar-with-dependencies.{#packaging#} ./task.log & 
+nohup java -jar /home/work/hotelpms/hotel-statistic/hotel-statistic-jar-with-dependencies.war ./task.log & 
