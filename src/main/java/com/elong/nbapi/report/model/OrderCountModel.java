@@ -1,6 +1,6 @@
 package com.elong.nbapi.report.model;
 
-public class OrderCountRecord {
+public class OrderCountModel {
 
 	private String proxyid;
 	
@@ -15,10 +15,7 @@ public class OrderCountRecord {
 	private int creasuccess;
 	
 	private int creafailed;
-	
-	private int prepay;
-	
-	private int selfpay;
+
 
 	public String getProxyid() {
 		return proxyid;
@@ -74,22 +71,6 @@ public class OrderCountRecord {
 
 	public void setCreafailed(int creafailed) {
 		this.creafailed = creafailed;
-	}
-
-	public int getPrepay() {
-		return prepay;
-	}
-
-	public void setPrepay(int prepay) {
-		this.prepay = prepay;
-	}
-
-	public int getSelfpay() {
-		return selfpay;
-	}
-
-	public void setSelfpay(int selfpay) {
-		this.selfpay = selfpay;
 	}
 
 }

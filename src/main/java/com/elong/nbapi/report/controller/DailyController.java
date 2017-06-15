@@ -29,8 +29,22 @@ public class DailyController {
 	
 	@Resource
 	private OrderCountServiceImpl oservice;
+	
 
-	@RequestMapping(value = "/counttable", method = { RequestMethod.GET })
+	@RequestMapping(value = "/methodcount", method = { RequestMethod.GET })
+	public ModelAndView methodcount(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("/report/methodcount_daily");
+
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("selDate", dservice.getResultDate());
+		
+		mav.addAllObjects(modelMap);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/methodcountdata", method = { RequestMethod.GET })
 	public @ResponseBody Map<String, Object> getAllProxyCountData(HttpServletRequest request,
 			HttpServletResponse response) {
 		String countdate = request.getParameter("countdate");
@@ -50,7 +64,24 @@ public class DailyController {
 		return modelMap;
 	}
 	
-	@RequestMapping(value = "/countorder", method = { RequestMethod.GET })
+	
+	//-------------------------------------------------------------------------
+	
+	
+	@RequestMapping(value = "/ordercount", method = { RequestMethod.GET })
+	public ModelAndView ordercount(HttpServletRequest request,
+			HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("/report/ordercount_daily");
+
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("oselDate", oservice.getResultDate());
+		
+		mav.addAllObjects(modelMap);
+		return mav;
+	}
+
+	@RequestMapping(value = "/ordercountdata", method = { RequestMethod.GET })
 	public @ResponseBody Map<String, Object> getAllProxyOrderCountData(HttpServletRequest request,
 			HttpServletResponse response) {
 		String countdate = request.getParameter("countdate");
@@ -70,18 +101,6 @@ public class DailyController {
 		return modelMap;
 	}
 	
-	@RequestMapping(value = "/main", method = { RequestMethod.GET })
-	public ModelAndView main(HttpServletRequest request,
-			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView(); 
-		mav.setViewName("/report/dailyMain");
 
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("selDate", dservice.getResultDate());
-		modelMap.put("oselDate", oservice.getResultDate());
-		
-		mav.addAllObjects(modelMap);
-		return mav;
-	}
 	
 }

@@ -14,7 +14,10 @@
        	   http://code.alibabatech.com/schema/dubbo/dubbo.xsd
        	   http://www.springframework.org/schema/data/mongo
            http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
-
+           
+	<!--
+	暂时先去掉mybatis整合，hive和mybatis整合出现unsupport method异常
+	<import resource="classpath:conf/core/spring/applicationContext_jdbc.xml" />  -->
 
 	<!-- 以下一行配置为JavaDoc站点，必须保留！！！切记！！！如果更改或servlet.xml，请务必保留下行 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />

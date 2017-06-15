@@ -17,14 +17,14 @@ import org.springframework.stereotype.Service;
 
 import com.elong.nb.UserServiceAgent;
 import com.elong.nb.common.model.ProxyAccount;
-import com.elong.nbapi.report.dao.MethodCountHDFSDao;
-import com.elong.nbapi.report.model.MethodCountRecord;
+import com.elong.nbapi.report.dao.MethodCountDao;
+import com.elong.nbapi.report.model.MethodCountModel;
 
 @Service
 public class MethodCountServiceImpl {
-
+	
 	@Resource
-	private MethodCountHDFSDao dao;
+	private MethodCountDao dao;
 
 	public List<String> getResultDate(){
 		List<String> list = dao.getResultDate();
@@ -42,8 +42,8 @@ public class MethodCountServiceImpl {
 	public List<String[]> getAllProxyCountData(String countdate) {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("countdate", countdate);
-
-		List<MethodCountRecord> records = dao.getMethodCount(params);
+		
+		List<MethodCountModel> records = dao.findMethodCount(countdate);
 
 		Map<String, Map<String, Long>> rst = new HashMap<String, Map<String, Long>>();
 		if (records == null)
@@ -52,20 +52,20 @@ public class MethodCountServiceImpl {
 		methods.add("SUM");
 		methods.add("createOrder"); // createOrder在第二列
 
-		for (MethodCountRecord r : records) {
+		for (MethodCountModel r : records) {
 			// 形成数据集
-			if (!rst.containsKey(r.getProxyid())) {
+			if (!rst.containsKey(r.getProxyId())) {
 				Map<String, Long> tmp = new HashMap<String, Long>();
 				tmp.put("SUM", 0L);
-				rst.put(r.getProxyid(), tmp);
+				rst.put(r.getProxyId(), tmp);
 			}
-			rst.get(r.getProxyid()).put(r.getMethod(), r.getCount());
-			rst.get(r.getProxyid()).put("SUM",
-					rst.get(r.getProxyid()).get("SUM") + r.getCount());
+			rst.get(r.getProxyId()).put(r.getMethodName(), r.getCount());
+			rst.get(r.getProxyId()).put("SUM",
+					rst.get(r.getProxyId()).get("SUM") + r.getCount());
 
 			// 形成方法集
-			if (!methods.contains(r.getMethod()))
-				methods.add(r.getMethod());
+			if (!methods.contains(r.getMethodName()))
+				methods.add(r.getMethodName());
 		}
 
 		// 形成分销商集

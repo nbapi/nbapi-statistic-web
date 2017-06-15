@@ -17,14 +17,14 @@ import org.springframework.stereotype.Service;
 
 import com.elong.nb.UserServiceAgent;
 import com.elong.nb.common.model.ProxyAccount;
-import com.elong.nbapi.report.dao.OrderCountHDFSDao;
-import com.elong.nbapi.report.model.OrderCountRecord;
+import com.elong.nbapi.report.dao.OrderCountDao;
+import com.elong.nbapi.report.model.OrderCountModel;
 
 @Service
 public class OrderCountServiceImpl {
 
 	@Resource
-	private OrderCountHDFSDao dao;
+	private OrderCountDao dao;
 
 	public List<String> getResultDate(){
 		List<String> list = dao.getResultDate();
@@ -58,38 +58,33 @@ public class OrderCountServiceImpl {
 		String countlastweekday = sdf.format(lastweekday);
 		
 		
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("countdate", countdate);
-		List<OrderCountRecord> records = dao.getOrderCount(params);
+		List<OrderCountModel> records = dao.getOrderCount(countdate);
 
-		params.put("countdate", countyesterday);
-		List<OrderCountRecord> yesterday_records = dao.getOrderCount(params);
+		List<OrderCountModel> yesterday_records = dao.getOrderCount(countyesterday);
 		
-		params.put("countdate", countlastweekday);
-		List<OrderCountRecord> week_records = dao.getOrderCount(params);
+		List<OrderCountModel> week_records = dao.getOrderCount(countlastweekday);
 		
-		Collections.sort(records, new Comparator<OrderCountRecord>(){
+		Collections.sort(records, new Comparator<OrderCountModel>(){
 
 			@Override
-			public int compare(OrderCountRecord o1, OrderCountRecord o2) {
+			public int compare(OrderCountModel o1, OrderCountModel o2) {
 				return o2.getCreasum() - o1.getCreasum();
 			}
 			
 		});
 		
-		Map<String, OrderCountRecord> yesterday_map = toMap(yesterday_records);
-		Map<String, OrderCountRecord> week_map = toMap(week_records);
+		Map<String, OrderCountModel> yesterday_map = toMap(yesterday_records);
+		Map<String, OrderCountModel> week_map = toMap(week_records);
 		
 		String[] titles = new String[]{"", "请求数", "DOD", "WOW", "可定通过率", "DOD", "WOW", 
-											"请求数", "DOD", "WOW","成单通过率", "DOD", "WOW",
-											"订单数", "DOD", "WOW", "订单数", "DOD", "WOW"};
+											"请求数", "DOD", "WOW","成单通过率", "DOD", "WOW"};
 		data.add(titles);
 		
         NumberFormat numberFormat = NumberFormat.getInstance();  
         numberFormat.setMaximumFractionDigits(2); 
         
-		for (OrderCountRecord qcr : records){
-			String[] line = new String[19];
+		for (OrderCountModel qcr : records){
+			String[] line = new String[13];
 			ProxyAccount pa = UserServiceAgent.findProxyByProxyId(qcr.getProxyid());
 			line[0] = pa == null ? qcr.getProxyid() : pa.getProjectName();
 			
@@ -111,19 +106,15 @@ public class OrderCountServiceImpl {
 				float b = qcr.getCreasum();
 				line[10] = numberFormat.format(a / b * 100) + "%";
 			}
-			
-			line[13] = "" + qcr.getPrepay();
-			line[16] = "" + qcr.getSelfpay();
+
 			
 			//--------------------------DOD------------------------
-			OrderCountRecord qcr_yesterday = yesterday_map.get(qcr.getProxyid());
+			OrderCountModel qcr_yesterday = yesterday_map.get(qcr.getProxyid());
 			if (qcr_yesterday == null){
 				line[2] = "N/A";
 				line[5] = "N/A";
 				line[8] = "N/A";
 				line[11] = "N/A";
-				line[14] = "N/A";
-				line[17] = "N/A";
 			}else{
 				if (qcr_yesterday.getValisum() == 0)
 					line[2] = "N/A";
@@ -161,32 +152,14 @@ public class OrderCountServiceImpl {
 					float bb = qcr_yesterday.getCreasum();
 					line[11] = numberFormat.format((a / b) / (aa / bb) * 100) + "%";
 				}
-				
-				if (qcr_yesterday.getPrepay() == 0)
-					line[14] = "N/A";
-				else{
-					float a = qcr.getPrepay();
-					float b = qcr_yesterday.getPrepay();
-					line[14] = numberFormat.format(a / b * 100) + "%";
-				}
-				
-				if (qcr_yesterday.getSelfpay() == 0)
-					line[17] = "N/A";
-				else{
-					float a = qcr.getSelfpay();
-					float b = qcr_yesterday.getSelfpay();
-					line[17] = numberFormat.format(a / b * 100) + "%";
-				}
 			}
 			//--------------------------WOW------------------------
-			OrderCountRecord qcr_week = week_map.get(qcr.getProxyid());
+			OrderCountModel qcr_week = week_map.get(qcr.getProxyid());
 			if (qcr_week == null){
 				line[3] = "N/A";
 				line[6] = "N/A";
 				line[9] = "N/A";
 				line[12] = "N/A";
-				line[15] = "N/A";
-				line[18] = "N/A";
 			}else{
 				if (qcr_week.getValisum() == 0)
 					line[3] = "N/A";
@@ -224,31 +197,15 @@ public class OrderCountServiceImpl {
 					float bb = qcr_week.getCreasum();
 					line[12] = numberFormat.format((a / b) / (aa / bb) * 100) + "%";
 				}
-				
-				if (qcr_week.getPrepay() == 0)
-					line[15] = "N/A";
-				else{
-					float a = qcr.getPrepay();
-					float b = qcr_week.getPrepay();
-					line[15] = numberFormat.format(a / b * 100) + "%";
-				}
-				
-				if (qcr_week.getSelfpay() == 0)
-					line[18] = "N/A";
-				else{
-					float a = qcr.getSelfpay();
-					float b = qcr_week.getSelfpay();
-					line[18] = numberFormat.format(a / b * 100) + "%";
-				}
 			}
 			data.add(line);
 		}
 		return data;
 	}
 
-	private static Map<String, OrderCountRecord> toMap(List<OrderCountRecord> records){
-		Map<String, OrderCountRecord> map = new HashMap<String, OrderCountRecord>();
-		for (OrderCountRecord r : records){
+	private static Map<String, OrderCountModel> toMap(List<OrderCountModel> records){
+		Map<String, OrderCountModel> map = new HashMap<String, OrderCountModel>();
+		for (OrderCountModel r : records){
 			map.put(r.getProxyid(), r);
 		}
 		return map;

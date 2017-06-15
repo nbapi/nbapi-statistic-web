@@ -199,7 +199,7 @@ public class StatisticController {
 	}
 	
 
-	@Scheduled(fixedRate = 1 * 1000)
+	@Scheduled(fixedRate = 10 * 1000)
 	public void printRealtimeDataWithAll() {
 
 		long beginMills = System.currentTimeMillis();

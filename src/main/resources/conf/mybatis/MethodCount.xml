@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Mon Aug 20 17:02:07 CST 2012 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.elong.nbapi.report.dao.MethodCountDao">
+
+	<select id="findMethodCount" parameterType="java.lang.String" resultType="methodCountModel">
+		select * from app_proxyMethodCount where ds = #{datesource,jdbcType=VARCHAR}
+	</select>
+
+</mapper>
