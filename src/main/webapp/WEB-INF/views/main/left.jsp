@@ -52,6 +52,14 @@
 						<li><a
 							href="<c:url value="/daily/ordercount"></c:url>">分销商订单报表</a></li>
 					</ul>
+					<ul class="submenu">
+						<li><a
+							href="<c:url value="/daily/checkfailurecount"></c:url>">分销商可定失败报表</a></li>
+					</ul>
+					<ul class="submenu">
+						<li><a
+							href="<c:url value="/daily/orderfailurecount"></c:url>">分销商订单失败报表</a></li>
+					</ul>
 				</li>
 
 
