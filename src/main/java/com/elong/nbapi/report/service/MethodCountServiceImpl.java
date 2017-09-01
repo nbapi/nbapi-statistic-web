@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.elong.nb.UserServiceAgent;
-import com.elong.nb.common.model.ProxyAccount;
 import com.elong.nbapi.report.dao.MethodCountDao;
 import com.elong.nbapi.report.model.MethodCountModel;
 
@@ -120,8 +119,7 @@ public class MethodCountServiceImpl {
 				});
 
 		for (String proxyid : rstmap.keySet()) {
-			ProxyAccount pa = UserServiceAgent.findProxyByProxyId(proxyid);
-			proxys.put(proxyid, pa == null ? proxyid : pa.getProjectName());
+			proxys.put(proxyid, UserServiceAgent.getProjectNameByProxyId(proxyid));
 		}
 
 		return proxys;

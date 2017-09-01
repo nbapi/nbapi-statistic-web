@@ -12,7 +12,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.elong.nb.UserServiceAgent;
-import com.elong.nb.common.model.ProxyAccount;
 import com.elong.nbapi.report.dao.CheckFailureCountDao;
 import com.elong.nbapi.report.model.CheckFailureModel;
 
@@ -62,9 +61,7 @@ public class CheckFailureCountServiceImpl {
 				}
 				
 			});
-			
-			ProxyAccount pa = UserServiceAgent.findProxyByOrderfrom(key);	
-			String projectName = pa == null ? key : pa.getProjectName();
+			String projectName =  UserServiceAgent.getProjectNameByOrderFrom(key);
 			
 			List<String[]> lines = new LinkedList<String[]>();
 			for (CheckFailureModel c : ls){

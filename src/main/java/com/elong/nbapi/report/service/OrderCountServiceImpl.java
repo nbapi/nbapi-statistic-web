@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.elong.nb.UserServiceAgent;
-import com.elong.nb.common.model.ProxyAccount;
 import com.elong.nbapi.report.dao.OrderCountDao;
 import com.elong.nbapi.report.model.OrderCountModel;
 
@@ -85,8 +84,7 @@ public class OrderCountServiceImpl {
         
 		for (OrderCountModel qcr : records){
 			String[] line = new String[13];
-			ProxyAccount pa = UserServiceAgent.findProxyByProxyId(qcr.getProxyid());
-			line[0] = pa == null ? qcr.getProxyid() : pa.getProjectName();
+			line[0] = UserServiceAgent.getProjectNameByProxyId(qcr.getProxyid());
 			
 			//--------------------------COUNT DAY------------------------
 			line[1] = "" + qcr.getValisum();
