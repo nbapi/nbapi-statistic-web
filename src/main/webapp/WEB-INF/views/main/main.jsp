@@ -15,15 +15,8 @@
 <link href="<c:url value="/resources/css/nanoscroller.css"></c:url>" rel="stylesheet"
     type="text/css">
 <link href="<c:url value="/resources/css/themestyles.css"></c:url>" rel="stylesheet" type="text/css">
-<!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400'
-	rel='stylesheet' type='text/css'> -->
 <link href="<c:url value="/resources/css/bootstrap-datetimepicker.css"></c:url>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/css/bootstrap-datepicker3.min.css"></c:url>" rel="stylesheet" type="text/css">
-
-<%-- <link href="<c:url value="/resources/fonts/_bootstrap-datetimepicker.less"></c:url>" rel="stylesheet/less" type="text/css">
-<link href="<c:url value="/resources/fonts/bootstrap-datetimepicker-build.less"></c:url>" rel="stylesheet/less" type="text/css"> --%>
-
-
 <link href="<c:url value="/resources/css/daterangepicker-bs3.css"></c:url>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/css/bootstrap-editable.css"></c:url>" rel="stylesheet"
     type="text/css">
@@ -35,13 +28,7 @@
     type="text/css">
 <link href="<c:url value="/resources/css/notification/ns-style-theme.css"></c:url>" rel="stylesheet"
     type="text/css">  
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--
-[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]
--->
+
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js"></c:url>"></script>
 <script src="<c:url value="/resources/js/moment.min.js"></c:url>"></script>
@@ -51,17 +38,11 @@
 <script src="<c:url value="/resources/js/daterangepicker.js"></c:url>"></script>
 <script src="<c:url value="/resources/js/jquery.nanoscroller.min.js"></c:url>"></script>
 <script src="<c:url value="/resources/js/bootstrap-editable.min.js"></c:url>"></script>
-<%-- <script src="<c:url value="/resources/js/highcharts.js"></c:url>"></script>  --%>
 
 <script src="<c:url value="/resources/js/highstock.js"></c:url>"></script>
 
-<%-- <script src="<c:url value="/resources/js/exporting.js"></c:url>"></script> --%>
-
 <script src="<c:url value="/resources/js/js-template.js"></c:url>"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!-- <script src="<c:url value="/resources/js/ie10-viewport-bug-workaround.js"></c:url>"></script> -->
 <script src="<c:url value="/resources/js/navigation.js"></c:url>"></script>
-<%-- <script src="<c:url value="/resources/js/numeral.min.js"></c:url>"></script> --%>
 <script src="<c:url value="/resources/js/hotelcommon.js"></c:url>"></script>
 <script src="<c:url value="/resources/js/notification/modernizr.custom.js"></c:url>"></script>
 <script src="<c:url value="/resources/js/notification/classie.js"></c:url>"></script>

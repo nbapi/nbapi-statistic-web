@@ -15,9 +15,7 @@
        	   http://www.springframework.org/schema/data/mongo
            http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
            
-	<!--
-	暂时先去掉mybatis整合，hive和mybatis整合出现unsupport method异常
-	<import resource="classpath:conf/core/spring/applicationContext_jdbc.xml" />  -->
+	<import resource="classpath:conf/core/spring/applicationContext_jdbc.xml" />  
 
 	<!-- 以下一行配置为JavaDoc站点，必须保留！！！切记！！！如果更改或servlet.xml，请务必保留下行 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -50,26 +48,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- 系统错误转发配置 -->
-	<bean id="exceptionResolver"
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="exceptionMappings"><!-- 配置多个statusCode -->
-			<props>
-				<prop key="java.lang.Exception">errors/503</prop>
-			</props>
-		</property>
-		<property name="statusCodes"><!-- 配置多个statusCode -->
-			<props>
-				<prop key="errors/503">503</prop>  <!-- 503.jsp -->
-				<prop key="errors/404">404</prop>    <!-- 404.jsp -->
-			</props>
-		</property>
-		<property name="defaultErrorView" value="errors/404"></property>
-		<property name="defaultStatusCode" value="404"></property>
-	</bean>
-
 	<context:component-scan base-package="com.elong.nbapi.*"></context:component-scan>
-
 	<context:annotation-config />
 
 	<bean id="velocityEngine"
@@ -93,7 +72,6 @@
 	</bean>
 
 	<mvc:annotation-driven />
-
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">

@@ -7,8 +7,4 @@
 		<setting name="useGeneratedKeys" value="false" />
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
-	
-	<typeAliases>
-		<typeAlias alias="methodCountModel" type="com.elong.nbapi.report.model.MethodCountModel"/>
-	</typeAliases>
 </configuration>

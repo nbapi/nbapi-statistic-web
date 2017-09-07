@@ -62,7 +62,15 @@
 					</ul>
 				</li>
 
-
+				<li><a href="" class="dropdown-toggle"><i
+						class="fa fa-dashboard"></i> <span>数据产品</span><i
+						class="fa fa-angle-right drop-icon"></i></a>
+					<ul class="submenu">
+						<li><a
+							href="<c:url value="/prod/logentity/logSummaryPage"></c:url>">分销流量分析</a></li>
+					</ul>
+				</li>
+				
 			</ul>
 		</div>
 	</section>
