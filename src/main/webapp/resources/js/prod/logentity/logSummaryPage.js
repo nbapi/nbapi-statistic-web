@@ -10,7 +10,7 @@ $(function() {
 	
 	//默认日期选中
 	var nowDate = new Date();
-	var daysago = new Date(moment().add(-5, 'days').format("YYYY-MM-DD"));
+	var daysago = new Date(moment().add(-7, 'days').format("YYYY-MM-DD"));
 	$('#datetimepickerFrom').datepicker('setDate', daysago);
 	$('#datetimepickerFrom').datepicker('update');
 	$('#datetimepickerTo').datepicker('setDate', nowDate);
@@ -23,6 +23,35 @@ $(function() {
 	});
 	$("#queryBtn").click();
 });
+
+
+function refreshPage(startDs,endDs){
+	$.ajax({
+		url : '/prod/logentity/getSummaryData',
+		type : 'get',
+		data : "startDs=" + startDs + "&endDs=" + endDs,
+		dataType : 'json',
+		success : function(result) {
+			var chartSeries = generateSeriesData(result.summary);
+			initSummaryChart(chartSeries);
+			initTable(result.title, result.data);
+		},
+		error : function() {
+			alert('日期范围不能大于15天');
+		}
+	});
+}
+
+function generateSeriesData(results) {
+	var chartSeries = [];
+	for (var n = 0; n < results.length; n=n+2) {
+		var item = {};
+		item.name = results[n];
+		item.y = results[n+1];
+		chartSeries.push(item);
+	}
+	return chartSeries;
+}
 
 function initSummaryChart(series) {
 	$('#summarychart').highcharts({
@@ -68,17 +97,6 @@ function initSummaryChart(series) {
 	});
 }
 
-function generateSeriesData(results) {
-	var chartSeries = [];
-	for (var n = 0; n < results.length; n=n+2) {
-		var item = {};
-		item.name = results[n];
-		item.y = results[n+1];
-		chartSeries.push(item);
-	}
-	return chartSeries;
-}
-
 function initTable(title, data){
 	var base = $('#baseUrl').val();
 	var theadcompare = "<tr>";
@@ -98,20 +116,4 @@ function initTable(title, data){
 	});
 	
 	$("#tbodydata").html(tbodycompare);
-}
-function refreshPage(startDs,endDs){
-	$.ajax({
-		url : '/prod/logentity/getSummaryData',
-		type : 'get',
-		data : "startDs=" + startDs + "&endDs=" + endDs,
-		dataType : 'json',
-		success : function(result) {
-			var chartSeries = generateSeriesData(result.summary);
-			initSummaryChart(chartSeries);
-			initTable(result.title, result.data);
-		},
-		error : function() {
-			alert('日期范围不能大于15天');
-		}
-	});
 }

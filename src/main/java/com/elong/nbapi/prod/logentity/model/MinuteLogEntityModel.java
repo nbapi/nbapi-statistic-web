@@ -4,7 +4,7 @@ public class MinuteLogEntityModel {
 
 	private String methodName;
 	
-	private String minute;
+	private String sminute;
 	
 	private long minuteSumCount;
 	
@@ -24,12 +24,12 @@ public class MinuteLogEntityModel {
 		this.methodName = methodName;
 	}
 
-	public String getMinute() {
-		return minute;
+	public String getSminute() {
+		return sminute;
 	}
 
-	public void setMinute(String minute) {
-		this.minute = minute;
+	public void setSminute(String minute) {
+		this.sminute = minute;
 	}
 
 	public long getMinuteSumCount() {

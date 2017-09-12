@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.elong.nb.UserServiceAgent;
+import com.elong.nb.common.model.ProxyAccount;
 import com.elong.nbapi.prod.logentity.service.LogEntityService;
 
 @Controller
@@ -67,5 +69,28 @@ public class LogEntityController {
 			HttpServletResponse response) {
 		String ds = request.getParameter("ds");
 		return service.queryAllDay(ds);
+	}
+	
+	@RequestMapping(value = "/logDetailPage", method = { RequestMethod.GET })
+	public ModelAndView logDetailPage(HttpServletRequest request,
+			HttpServletResponse response) {
+		String ds = request.getParameter("ds");
+		String username = request.getParameter("username");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("ds", ds);
+		mav.addObject("username", username);
+		ProxyAccount pa = UserServiceAgent.findProxyByUsername(username);
+		mav.addObject("title", pa == null ? username : pa.getProjectName());
+		mav.setViewName("/prod/logentity/logDetailPage");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/getDetailData", method = { RequestMethod.GET })
+	public @ResponseBody
+	Map<String, Object> getDetailData(HttpServletRequest request,
+			HttpServletResponse response) {
+		String ds = request.getParameter("ds");
+		String username = request.getParameter("username");
+		return service.queryAllMinute(ds, username);
 	}
 }

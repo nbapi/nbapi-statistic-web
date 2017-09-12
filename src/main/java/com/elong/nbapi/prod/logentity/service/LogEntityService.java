@@ -18,6 +18,7 @@ import com.elong.nb.UserServiceAgent;
 import com.elong.nb.common.model.ProxyAccount;
 import com.elong.nbapi.prod.logentity.dao.LogEntityDao;
 import com.elong.nbapi.prod.logentity.model.DayLogEntityModel;
+import com.elong.nbapi.prod.logentity.model.MinuteLogEntityModel;
 import com.elong.nbapi.prod.logentity.model.SummaryLogEntityModel;
 import com.elong.nbapi.prod.logentity.util.CategoryUtil;
 
@@ -124,6 +125,7 @@ public class LogEntityService {
 		for (String user : user_times.keySet()){
 			List<String> line = new LinkedList<String>(); 
 			ProxyAccount pa = UserServiceAgent.findProxyByUsername(user);
+			line.add(user);
 			line.add(pa == null ? user : pa.getProjectName());
 			Map<String, String> tmp_method_times = user_times.get(user);
 			for (String method : methods){
@@ -139,7 +141,63 @@ public class LogEntityService {
 		return result;
 	}
 	
-	
+	public Map<String, Object> queryAllMinute(String ds, String username){
+		List<MinuteLogEntityModel> ls = dao.queryAllMinute(ds, username);
+		Map<String, TreeMap<String, Long>> method_minute_times = new TreeMap<String, TreeMap<String, Long>>(new DSComparator());
+		for (MinuteLogEntityModel mlem : ls){
+			if (!method_minute_times.containsKey(mlem.getMethodName())){
+				TreeMap<String, Long> tmp = new TreeMap<String, Long>(new DSComparator());
+				method_minute_times.put(mlem.getMethodName(), tmp);
+			}
+			method_minute_times.get(mlem.getMethodName()).put(mlem.getSminute(), mlem.getMinuteSumCount());
+		}
+		
+		Map<String, Long[]> rst = new TreeMap<String, Long[]>(new DSComparator());
+		for (Entry<String, TreeMap<String, Long>> e : method_minute_times.entrySet()){
+			String method = e.getKey();
+			List<Long> points = new LinkedList<Long>();
+			for (int hour = 0; hour < 24 ; hour++){
+				for (int minute=0; minute < 60; minute++){
+					int m = hour * 100 + minute;
+					Long value = e.getValue().get(m + "");
+					if (value == null) value = 0l;	//补0
+					points.add(value);
+				}
+			}
+			rst.put(method, points.toArray(new Long[points.size()]));
+		}
+		
+		List<DayLogEntityModel> dayls = dao.queryAllDayByUsername(ds, username);
+		TreeMap<String, DayLogEntityModel> method_obj = new TreeMap<String, DayLogEntityModel>(new DSComparator());
+		for (DayLogEntityModel dlem : dayls){
+			method_obj.put(dlem.getMethodName(), dlem);
+		}
+		List<String[]> table = new LinkedList<String[]>();
+		List<String> titles = new LinkedList<String>();
+		titles.add("");
+		
+		List<String> times = new LinkedList<String>();
+		times.add("请求量(次)");
+		List<String> execTime = new LinkedList<String>();
+		execTime.add("服务时间(ms)");
+		List<String> errorTime = new LinkedList<String>();
+		errorTime.add("错误量(次)");
+		for (Map.Entry<String, DayLogEntityModel> e : method_obj.entrySet()){
+			titles.add(e.getKey());
+			times.add("" + e.getValue().getDaySumCount());
+			execTime.add("" + e.getValue().getDaySumExeTime());
+			errorTime.add("" + e.getValue().getDaySumErrorCount());
+		}
+		table.add(times.toArray(new String[times.size()]));
+		table.add(execTime.toArray(new String[execTime.size()]));
+		table.add(errorTime.toArray(new String[errorTime.size()]));
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("chart", rst);
+		result.put("title", titles.toArray(new String[titles.size()]));
+		result.put("data", table);
+		return result;
+	}
 	
 	private class DSComparator implements Comparator<String>{
 

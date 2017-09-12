@@ -32,4 +32,25 @@
 		SELECT * FROM app_methodcount_day 
 			<![CDATA[WHERE ds = #{ds}]]>
 	</select>
+	
+	<select id="queryAllDayByUsername" resultMap="dayResultMap">
+		SELECT * FROM app_methodcount_day 
+			<![CDATA[WHERE ds = #{ds} AND proxyId = #{username}]]>
+	</select>
+	
+	<resultMap id="minuteResultMap"
+		type="com.elong.nbapi.prod.logentity.model.MinuteLogEntityModel">
+		<result column="proxyId" jdbcType="VARCHAR" property="proxyId" />
+		<result column="ds" jdbcType="VARCHAR" property="ds" />
+		<result column="sminute" jdbcType="VARCHAR" property="sminute" />
+		<result column="minuteSumCount" jdbcType="BIGINT" property="minuteSumCount" />
+		<result column="minuteSumExeTime" jdbcType="BIGINT" property="minuteSumExeTime" />
+		<result column="minuteSumErrorCount" jdbcType="BIGINT" property="minuteSumErrorCount" />
+		<result column="methodName" jdbcType="VARCHAR" property="methodName" />
+	</resultMap>
+	
+	<select id="queryAllMinute" resultMap="minuteResultMap">
+		SELECT * FROM app_methodcount_minute  
+			<![CDATA[WHERE ds = #{ds} AND proxyId = #{username}]]>
+	</select>
 </mapper>

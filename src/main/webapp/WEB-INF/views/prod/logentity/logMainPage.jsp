@@ -9,9 +9,9 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body background="">
-
+	<input type="hidden" id="baseUrl" value="${pageContext.request.contextPath}"/> 
 	<form class="form-horizontal ng-pristine ng-valid">
-		<div class="main-box clearfix">
+		<div class="main-box clearfix"> 
 
 			<div class="main-box-body clearfix">
 				<div class="span12">
@@ -27,14 +27,17 @@
 
 							<div class="tab-pane fade active in" id="tab-count">
 								<div class="row">
-									<div class="btn-group">
-									日期:<input id="datetimepicker" type="text" value="${ds}" />
+									<div>
+									日期:<input id="datetimepicker" type="text" value="${ds}"/>
+									<a href="${pageContext.request.contextPath}/prod/logentity/logSummaryPage" style="float:right">返回</a>
 									</div>
+									
 									<div id="mainchart" class="row">
-										
 									</div>
+									
 									<div class="table-responsive">
-										<table class="table-striped table-condensed table-bordered table-hover">
+										<table class="table-striped table-condensed table-bordered table-hover table-responsive">
+											<caption>点击分销商名称查看明细</caption>
 											<thead id="theadtitle">
 											</thead>
 											<tbody id="tbodydata">

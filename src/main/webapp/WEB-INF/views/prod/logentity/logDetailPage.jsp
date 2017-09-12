@@ -9,9 +9,9 @@
 	rel="stylesheet" type="text/css">
 </head>
 <body background="">
-	<input type="hidden" id="baseUrl" value="${pageContext.request.contextPath}"/>
+	<input type="hidden" id="baseUrl" value="${pageContext.request.contextPath}"/> 
 	<form class="form-horizontal ng-pristine ng-valid">
-		<div class="main-box clearfix">
+		<div class="main-box clearfix"> 
 
 			<div class="main-box-body clearfix">
 				<div class="span12">
@@ -27,19 +27,19 @@
 
 							<div class="tab-pane fade active in" id="tab-count">
 								<div class="row">
-									<div class="btn-group">
-										日期范围：
-										<input id="datetimepickerFrom" type="text" >
-										到
-										<input id="datetimepickerTo" type="text" >
-										<button type="button" id="queryBtn">查询</button>
+									<div>
+									日期:<input id="datetimepicker" type="text" value="${ds}"/>
+									<input type="hidden" id="username" value="${username}"/>
+									分销商:<label><strong>${title}</strong></label>
+									<a href="${pageContext.request.contextPath}/prod/logentity/logMainPage?ds=${ds}" style="float:right">返回</a>
 									</div>
-									<div id="summarychart" class="row">
-										
+									
+									<div id="detailchart" class="row">
 									</div>
+									
 									<div class="table-responsive">
 										<table class="table-striped table-condensed table-bordered table-hover table-responsive">
-											<caption>点击日期分析</caption>
+											<caption>每日明细汇总</caption>
 											<thead id="theadtitle">
 											</thead>
 											<tbody id="tbodydata">
@@ -56,6 +56,6 @@
 
 		</div>
 	</form>
-	<script src="<c:url value="/resources/js/prod/logentity/logSummaryPage.js"></c:url>"></script>
+	<script src="<c:url value="/resources/js/prod/logentity/logDetailPage.js"></c:url>"></script>
 </body>
 </html>
