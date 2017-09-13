@@ -23,7 +23,7 @@ function refreshPage(){
 
 	var username = $("#username").val();
 	$.ajax({
-		url : '/prod/logentity/getDetailData',
+		url : 'prod/logentity/getDetailData',
 		type : 'get',
 		data : "ds=" + ds + "&username=" + username,
 		dataType : 'json',

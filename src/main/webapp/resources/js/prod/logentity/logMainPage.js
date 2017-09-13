@@ -18,7 +18,7 @@ $(function() {
 function refreshPage(){
 	var ds = $("#datetimepicker").val();
 	$.ajax({
-		url : '/prod/logentity/getMainData',
+		url : 'prod/logentity/getMainData',
 		type : 'get',
 		data : "ds=" + ds,
 		dataType : 'json',

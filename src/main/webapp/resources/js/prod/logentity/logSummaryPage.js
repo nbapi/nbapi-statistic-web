@@ -27,7 +27,7 @@ $(function() {
 
 function refreshPage(startDs,endDs){
 	$.ajax({
-		url : '/prod/logentity/getSummaryData',
+		url : 'prod/logentity/getSummaryData',
 		type : 'get',
 		data : "startDs=" + startDs + "&endDs=" + endDs,
 		dataType : 'json',
@@ -36,7 +36,7 @@ function refreshPage(startDs,endDs){
 			initSummaryChart(chartSeries);
 			initTable(result.title, result.data);
 		},
-		error : function() {
+		error : function(e, textStatus, errorThrown) {
 			alert('日期范围不能大于15天');
 		}
 	});
