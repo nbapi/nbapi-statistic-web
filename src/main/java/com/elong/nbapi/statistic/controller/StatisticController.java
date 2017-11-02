@@ -45,6 +45,7 @@ import com.elong.nbapi.statistic.service.StatisticServiceImpl;
 
 @Controller
 @EnableScheduling
+@RequestMapping("/statistic")
 public class StatisticController {
 
 	private final Set<LeftNavParemeter> subscribeSet = new HashSet<LeftNavParemeter>();

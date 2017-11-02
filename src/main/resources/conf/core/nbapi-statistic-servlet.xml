@@ -89,4 +89,16 @@
 			</array>
 		</property>
 	</bean>
+	
+	<mvc:interceptors>
+        <!-- 检查用户权限，匹配需要检查的路径 -->
+        <mvc:interceptor>
+        		<mvc:mapping path="/statistic/**" />
+            <mvc:mapping path="/prod/logentity/**" />
+            <mvc:mapping path="/daily/**" />
+            <mvc:mapping path="/sysconf/**" />
+            <!-- 用户是否已经登录的检查 -->
+            <bean id="userLoginInterceptor" class="com.elong.nbapi.login.interceptor.UserLoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
