@@ -27,7 +27,7 @@ $(function() {
 
 function refreshPage(startDs,endDs){
 	$.ajax({
-		url : 'prod/logentity/getSummaryData',
+		url : '../prod/logentity/getSummaryData',
 		type : 'get',
 		data : "startDs=" + startDs + "&endDs=" + endDs,
 		dataType : 'json',

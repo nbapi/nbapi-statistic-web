@@ -12,7 +12,7 @@ $(function() {
 
 function refreshtable(datesel){
 	$.ajax({
-		url : 'daily/methodcountdata',
+		url : '../daily/methodcountdata',
 		type : 'get',
 		data : "countdate=" + datesel,
 		dataType : 'json',
