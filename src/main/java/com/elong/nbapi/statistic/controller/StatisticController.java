@@ -129,17 +129,6 @@ public class StatisticController {
 				+ "&dimensionId=" + dimensionId;
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView gotoIndexPage(Model model) {
-		model.addAttribute(Constant.HEADER_ACTIVE_ITEM, new String[] { "index" });
-		model.addAttribute("sysModuleList", new ArrayList<Module>());
-		model.addAttribute("businessList", service.getBusinessSystemList());
-
-		String page = getCmmPageUrl("index");
-		ModelAndView modelAndView = new ModelAndView(page);
-		return modelAndView;
-	}
-
 	protected String getCmmPageUrl(String url) {
 		return "/common/" + url;
 	}
