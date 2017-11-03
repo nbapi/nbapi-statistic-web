@@ -1,36 +1,34 @@
 $(function() {
-	$("#a-home").click();
-	
-	$("#seldate").bind("change",function(){
-	    var dateval = $(this).val();
-	    refreshtable(dateval);
+	$('#datetimepicker').datepicker({
+		autoclose: true,
+		format: "yyyymmdd",
+	}).on('changeDate', function(){
+		refreshPage();
 	});
-
-	refreshtable("");
-
+	
+	var daysago = new Date(moment().format("YYYY-MM-DD"));
+	$('#datetimepicker').datepicker('setDate', daysago);
 });
 
-function refreshtable(datesel){
+function refreshPage(){
+	var ds = $("#datetimepicker").val();
 	$.ajax({
-		url : '../daily/methodcountdata',
+		url : 'report/prodsummary/getRptData_q',
 		type : 'get',
-		data : "countdate=" + datesel,
+		data : "ds=" + ds,
 		dataType : 'json',
-		success : function(results) {
-			createtable(results.title, results.data);
+		success : function(result) {
+			initTable(result.title, result.data);
 		},
 		error : function() {
 		}
 	});
 }
 
-function createtable(title,data){
+function initTable(title, data){
 	var theadcompare = "<tr>";
 	$.each(title, function(index, value) {
-		if (index == 2)
-			theadcompare = theadcompare + "<th class='text-center btn-primary'>" + value + "</th>";
-		else
-			theadcompare = theadcompare + "<th class='text-center'>" + value + "</th>";
+		theadcompare = theadcompare + "<th class='text-center'>" + value + "</th>";
 	});
 	theadcompare = theadcompare + "</tr>";
 	$("#theadtitle").html(theadcompare);
@@ -43,11 +41,5 @@ function createtable(title,data){
 		});
 		tbodycompare = tbodycompare + "</tr>";
 	});
-	
 	$("#tbodydata").html(tbodycompare);
 }
-
-
-
-
-

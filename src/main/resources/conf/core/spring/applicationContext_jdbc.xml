@@ -51,14 +51,20 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.elong.nbapi.prod.logentity.dao" />
+		<property name="basePackage" value="com.elong.nbapi.prod.logentity.dao,
+		com.elong.nbapi.prod.createorder.dao,
+		com.elong.nbapi.prod.valiorder.dao,
+		com.elong.nbapi.report.dao" />
 	</bean>
 
 	<!-- 配置数据库注解aop -->
 	<bean id="getDataSourceKeyAspect" class="com.elong.nb.db.GetDataSourceKeyAspect" />
 	<aop:config>
 		<aop:aspect id="b" ref="getDataSourceKeyAspect">
-			<aop:pointcut id="tx" expression="execution(* com.elong.nbapi.prod.logentity.dao.*.*(..))" />
+			<aop:pointcut id="tx" expression="execution(* com.elong.nbapi.prod.logentity.dao.*.*(..)) ||
+			execution(* com.elong.nbapi.prod.createorder.dao.*.*(..)) ||
+			execution(* com.elong.nbapi.prod.valiorder.dao.*.*(..)) ||
+			execution(* com.elong.nbapi.report.dao.*.*(..))" />
 			<aop:before pointcut-ref="tx" method="before" />
 		</aop:aspect>
 	</aop:config>

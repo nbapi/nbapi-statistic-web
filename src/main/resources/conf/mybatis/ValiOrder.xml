@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Mon Aug 20 17:02:07 
+	CST 2012 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.elong.nbapi.prod.valiorder.dao.ValiOrderDao">
+
+	<resultMap id="queryAllValiOrderResultMap"
+		type="com.elong.nbapi.prod.valiorder.model.ValiOrderCountModel">
+		<result column="userName" jdbcType="VARCHAR" property="userName" />
+		<result column="daySumCount" jdbcType="BIGINT" property="daySumCount" />
+		<result column="successCount" jdbcType="BIGINT" property="successCount" />
+	</resultMap>
+	
+	<select id="queryAllValiOrder" resultMap="queryAllValiOrderResultMap">
+		SELECT userName,sum(daySumCount) as daySumCount,sum(successCount) as successCount FROM app_valiOrderCount 
+			<![CDATA[WHERE ds = #{ds}]]> group by userName
+	</select>
+	
+	
+	<resultMap id="queryAllErrorResultMap"
+		type="com.elong.nbapi.prod.valiorder.model.ValiOrderErrorModel">
+		<result column="respCode" jdbcType="VARCHAR" property="respCode" />
+		<result column="daySumCount" jdbcType="BIGINT" property="daySumCount" />
+	</resultMap>
+
+	<select id="queryAllError" resultMap="queryAllErrorResultMap">
+		SELECT respCode,daySumCount FROM app_valiOrderErrorCount 
+			<![CDATA[WHERE ds = #{ds} AND userName = #{username}]]> order by daySumCount desc
+	</select>
+	
+
+</mapper>

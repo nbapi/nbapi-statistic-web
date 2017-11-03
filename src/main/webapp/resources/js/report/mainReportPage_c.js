@@ -1,36 +1,37 @@
 $(function() {
-	$("#a-home").click();
-	
-	$("#oseldate").bind("change",function(){
-	    var dateval = $(this).val();
-	    refreshordertable(dateval);
+	$('#datetimepicker').datepicker({
+		autoclose: true,
+		format: "yyyymmdd",
+	}).on('changeDate', function(){
+		refreshPage();
 	});
-
-	refreshordertable("");
-
+	
+	var daysago = new Date(moment().format("YYYY-MM-DD"));
+	$('#datetimepicker').datepicker('setDate', daysago);
 });
 
-function refreshordertable(datesel){
+function refreshPage(){
+	var ds = $("#datetimepicker").val();
 	$.ajax({
-		url : '../daily/ordercountdata',
+		url : 'report/prodsummary/getRptData_c',
 		type : 'get',
-		data : "countdate=" + datesel,
+		data : "ds=" + ds,
 		dataType : 'json',
-		success : function(results) {
-			createordertable(results.title, results.data);
+		success : function(result) {
+			initTable(result.title, result.data);
 		},
 		error : function() {
 		}
 	});
 }
 
-function createordertable(title,data){
+function initTable(title, data){
 	var theadcompare = "<tr>";
 	$.each(title, function(index, value) {
 		theadcompare = theadcompare + "<th class='text-center'>" + value + "</th>";
 	});
 	theadcompare = theadcompare + "</tr>";
-	$("#otheadtitle").html(theadcompare);
+	$("#theadtitle").html(theadcompare);
 	
 	var tbodycompare = "";
 	$.each(data, function(index, line) {
@@ -40,10 +41,5 @@ function createordertable(title,data){
 		});
 		tbodycompare = tbodycompare + "</tr>";
 	});
-	
-	$("#otbodydata").html(tbodycompare);
+	$("#tbodydata").html(tbodycompare);
 }
-
-
-
-

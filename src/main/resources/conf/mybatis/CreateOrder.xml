@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Mon Aug 20 17:02:07 
+	CST 2012 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.elong.nbapi.prod.createorder.dao.CreateOrderDao">
+
+	<resultMap id="queryAllCreateOrderResultMap"
+		type="com.elong.nbapi.prod.createorder.model.CreateOrderCountModel">
+		<result column="userName" jdbcType="VARCHAR" property="userName" />
+		<result column="daySumCount" jdbcType="BIGINT" property="daySumCount" />
+		<result column="successCount" jdbcType="BIGINT" property="successCount" />
+	</resultMap>
+	
+	<select id="queryAllCreateOrder" resultMap="queryAllCreateOrderResultMap">
+		SELECT userName,daySumCount,successCount FROM app_createOrderCount 
+			<![CDATA[WHERE ds = #{ds}]]>
+	</select>
+	
+	
+	<resultMap id="queryAllErrorResultMap"
+		type="com.elong.nbapi.prod.createorder.model.CreateOrderErrorModel">
+		<result column="respCode" jdbcType="VARCHAR" property="respCode" />
+		<result column="daySumCount" jdbcType="BIGINT" property="daySumCount" />
+	</resultMap>
+
+	<select id="queryAllError" resultMap="queryAllErrorResultMap">
+		SELECT respCode,daySumCount FROM app_createOrderErrorCount 
+			<![CDATA[WHERE ds = #{ds} AND userName = #{username}]]> order by daySumCount desc
+	</select>
+	
+
+</mapper>

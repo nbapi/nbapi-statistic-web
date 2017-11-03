@@ -16,12 +16,12 @@
 
 				<li
 					<c:if test="${activeItem[0] eq 'index' }"> class ="active" </c:if>><a
-					href='<c:url value="/statistic/index"></c:url>'> <i
+					href='<c:url value="/index"></c:url>'> <i
 						class="fa fa-dashboard"></i> <span>实时数据监控</span>
 				</a></li>
 				
 				<c:forEach var="item" items="${sysModuleList}">
-					<c:set var="preUrl" value="statistic/leftnav" />
+					<c:set var="preUrl" value="leftnav" />
 
 					<li
 						<c:if test="${activeItem[0] eq item.businessType}"> class ="active open" </c:if>><a
@@ -46,28 +46,24 @@
 						class="fa fa-angle-right drop-icon"></i></a>
 					<ul class="submenu">
 						<li><a
-							href="<c:url value="/daily/methodcount"></c:url>">分销商访问次数报表</a></li>
+							href="<c:url value="/report/prodsummary/rptPage_c"></c:url>">携程可卖产品数报表</a></li>
 					</ul>
 					<ul class="submenu">
 						<li><a
-							href="<c:url value="/daily/ordercount"></c:url>">分销商订单报表</a></li>
-					</ul>
-					<ul class="submenu">
-						<li><a
-							href="<c:url value="/daily/checkfailurecount"></c:url>">分销商可定失败报表</a></li>
-					</ul>
-					<ul class="submenu">
-						<li><a
-							href="<c:url value="/daily/orderfailurecount"></c:url>">分销商订单失败报表</a></li>
+							href="<c:url value="/report/prodsummary/rptPage_q"></c:url>">去哪可卖产品数报表</a></li>
 					</ul>
 				</li>
 
 				<li><a href="" class="dropdown-toggle"><i
-						class="fa fa-dashboard"></i> <span>数据产品</span><i
+						class="fa fa-dashboard"></i> <span>离线数据分析</span><i
 						class="fa fa-angle-right drop-icon"></i></a>
 					<ul class="submenu">
 						<li><a
 							href="<c:url value="/prod/logentity/logSummaryPage"></c:url>">分销流量分析</a></li>
+						<li><a
+							href="<c:url value="/prod/createorder/createOrderSummaryPage"></c:url>">分销成单量分析</a></li>
+						<li><a
+							href="<c:url value="/prod/valiorder/valiOrderSummaryPage"></c:url>">分销可定量分析</a></li>
 					</ul>
 				</li>
 				
