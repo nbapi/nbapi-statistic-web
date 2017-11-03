@@ -125,7 +125,7 @@ public class StatisticController {
 		String dimensionName = dimension.getDimensionName();
 		String dimensionId = dimension.getId();
 
-		return "redirect:" + Constant.LEFT_NAV_PREFIX + "/" + businessLine + "/" + dimensionName + "?sysid=" + moduleList.get(0).getSystemId()
+		return "redirect:/statistic" + Constant.LEFT_NAV_PREFIX + "/" + businessLine + "/" + dimensionName + "?sysid=" + moduleList.get(0).getSystemId()
 				+ "&dimensionId=" + dimensionId;
 	}
 

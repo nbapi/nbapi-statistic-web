@@ -49,7 +49,7 @@
 <script src="<c:url value="/resources/js/notification/notificationFx.js"></c:url>"></script>
 <script src="<c:url value="/resources/js/jquery.twbsPagination.min.js"></c:url>"></script>
 <script type="text/javascript">
-    var contextPath = "<c:url value="/"></c:url>";
+    var contextPath = "<c:url value="/statistic"></c:url>";
     $.ajaxPrefilter(function(options,originalOptions, jqXHR) {
     	options.url = contextPath + options.url;
 	});

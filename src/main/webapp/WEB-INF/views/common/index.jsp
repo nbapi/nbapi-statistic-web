@@ -9,7 +9,7 @@
                 <c:forEach var="item" items="${businessList}">
                     <div class="col-lg-3 col-sm-6 col-xs-12 ">
                         <a class="text-center"
-                            href="<c:url value="/sysoption?id=${item.id}" ></c:url>">
+                            href="<c:url value="/statistic/sysoption?id=${item.id}" ></c:url>">
                             <div class="main-box small-graph-box green-bg green-bg-hover">
                                 <span class="text-center value">${item.systemName}</span>
                             </div>
