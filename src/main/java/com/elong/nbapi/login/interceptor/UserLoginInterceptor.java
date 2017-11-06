@@ -87,7 +87,8 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	private boolean checkInnerUserPermission(HttpServletRequest request) {
-		String[] paths = { "nbcheck", "nbincrinsert", "nbbalance", "nbincrquery", "nborder", "nbpay", "nbuser", "nbdata", "daily", "logentity", "sysconf" };
+		String[] paths = { "nbcheck", "nbincrinsert", "nbbalance", "nbincrquery", "nborder", "nbpay", "nbuser", "nbdata", "daily",
+				"logentity", "sysconf", "report" };
 		for (String path : paths) {
 			if (request.getServletPath().contains(path)) {
 				return checkPermission("aos-permission-" + path);
