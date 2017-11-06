@@ -52,7 +52,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
 		// 重置session超时时间
-		request.getSession().setMaxInactiveInterval(20 * 60);
+		SessionHelper.resetSessionExpireTime();
 
 		// 判断用户是否登录
 		if (StringUtils.isNotEmpty(SessionHelper.getUserName())) {

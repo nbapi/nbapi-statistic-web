@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.alibaba.fastjson.JSON;
+import com.elong.nb.cache.RedisManager;
 import com.elong.nbapi.login.model.AosTokenInfo;
 
 /**
@@ -22,85 +24,94 @@ import com.elong.nbapi.login.model.AosTokenInfo;
  * @department northbound
  */
 public class SessionHelper {
-    
-    /**
-     * 外部用户信息映射
-     */
-    private final static String sessionOutTokenBeanMap = "session_out_info_map";
 
-    /**
-     * 内部aos用户名
-     */
-    private final static String sessionUserAttr = "session_user_name";
+	private static RedisManager redisManager = RedisManager.getInstance("redis_shared", "redis_shared");
 
-    /**
-     * 用户aos token信息
-     */
-    private final static String aostokenbean = "session_aos_tokenbean";
+	/**
+	 * 内部aos用户名
+	 */
+	private final static String sessionUserAttr = "session_user_name";
 
-    /**
-     * 获取用户登录名
-     *
-     * @return
-     */
-    public static String getUserName() {
-        String uname = "";
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
-        if (session.getAttribute(sessionUserAttr) != null) {
-            uname = String.valueOf(session.getAttribute(sessionUserAttr));
-        }
-        ;
-        return uname;
-    }
+	/**
+	 * 用户aos token信息
+	 */
+	private final static String aostokenbean = "session_aos_tokenbean";
 
-    /**
-     * 设置用户session
-     *
-     * @param userName
-     */
-    public static void setUserName(String userName) {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
-        session.setAttribute(sessionUserAttr, userName);
-    }
+	/** 
+	 * session过期时长20分钟
+	 *
+	 * int SessionHelper.java sessionExpireSeconds
+	 */
+	private static int sessionExpireSeconds = 20 * 60;
 
-    /**
-     * 设置用户aos token信息
-     *
-     * @param aosTokenInfo
-     */
-    public static void setUserBean(AosTokenInfo aosTokenInfo){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
-        session.setAttribute(aostokenbean,aosTokenInfo);
-    }
+	/**
+	 * 获取用户登录名
+	 *
+	 * @return
+	 */
+	public static String getUserName() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		String redisSessionKey = sessionUserAttr + "_" + session.getId();
+		return redisManager.get(RedisManager.getCacheKey(redisSessionKey));
+	}
 
-    /**
-     * 获取用户aos token信息
-     *
-     * @return
-     */
-    public static AosTokenInfo getUserBean(){
-        AosTokenInfo aosTokenInfo = null;
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
-        if(session.getAttribute(aostokenbean)!=null){
-            aosTokenInfo=(AosTokenInfo)session.getAttribute(aostokenbean);
-        }
-        return aosTokenInfo;
-    }
-    
-    /**
-     * 用户退出
-     */
-    public static void removeSessionUserInfo() {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
+	/**
+	 * 设置用户session
+	 *
+	 * @param userName
+	 */
+	public static void setUserName(String userName) {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		String redisSessionKey = sessionUserAttr + "_" + session.getId();
+		redisManager.put(RedisManager.getCacheKey(redisSessionKey, sessionExpireSeconds), userName);
+	}
 
-        session.removeAttribute(sessionUserAttr);
-        session.removeAttribute(aostokenbean);
-    }
+	/**
+	 * 设置用户aos token信息
+	 *
+	 * @param aosTokenInfo
+	 */
+	public static void setUserBean(AosTokenInfo aosTokenInfo) {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		String redisSessionKey = aostokenbean + "_" + session.getId();
+		redisManager.put(RedisManager.getCacheKey(redisSessionKey, sessionExpireSeconds), aosTokenInfo);
+	}
+
+	/**
+	 * 获取用户aos token信息
+	 *
+	 * @return
+	 */
+	public static AosTokenInfo getUserBean() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		String redisSessionKey = aostokenbean + "_" + session.getId();
+		String resultStr = redisManager.get(RedisManager.getCacheKey(redisSessionKey));
+		return JSON.parseObject(resultStr, AosTokenInfo.class);
+	}
+	
+	public static void resetSessionExpireTime(){
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		String userKey = sessionUserAttr + "_" + session.getId();
+		redisManager.expire(RedisManager.getCacheKey(userKey));
+		String tokenKey = aostokenbean + "_" + session.getId();
+		redisManager.expire(RedisManager.getCacheKey(tokenKey));
+	}
+
+	/**
+	 * 用户退出
+	 */
+	public static void removeSessionUserInfo() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		String userKey = sessionUserAttr + "_" + session.getId();
+		redisManager.del(RedisManager.getCacheKey(userKey));
+		String tokenKey = aostokenbean + "_" + session.getId();
+		redisManager.del(RedisManager.getCacheKey(tokenKey));
+	}
 
 }
-
