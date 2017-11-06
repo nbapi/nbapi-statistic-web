@@ -50,12 +50,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="hidden-xxs">
+                    <!-- <li class="hidden-xxs">
                         <a class="btn">
                             <i class="fa fa-power-off">
                             </i>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

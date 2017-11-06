@@ -594,7 +594,7 @@ $(function() {
 		newParameters = JSON.stringify(newParameters);
 
 		$.ajax({
-			url : 'comm/getcomparisondata',
+			url : 'statistic/comm/getcomparisondata',
 			type : 'post',
 			data : "parameter=" + newParameters,
 			dataType : 'json',
