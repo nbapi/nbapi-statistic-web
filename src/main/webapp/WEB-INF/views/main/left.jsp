@@ -16,7 +16,7 @@
 
 				<li
 					<c:if test="${activeItem[0] eq 'index' }"> class ="active" </c:if>><a
-					href='<c:url value="/statistic/index"></c:url>'> <i
+					href='<c:url value="/index"></c:url>'> <i
 						class="fa fa-dashboard"></i> <span>实时数据监控</span>
 				</a></li>
 				
