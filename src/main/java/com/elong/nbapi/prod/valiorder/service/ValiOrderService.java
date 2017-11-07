@@ -57,7 +57,7 @@ public class ValiOrderService {
 		Map<String, ValiOrderCountModel> yesterday_map = toMap(yesterday_records);
 		Map<String, ValiOrderCountModel> week_map = toMap(week_records);
 		
-		String[] titles = new String[]{"", "成单请求量", "DOD", "WOW","成单通过率", "DOD", "WOW","错误量"};
+		String[] titles = new String[]{"", "可定请求量", "DOD", "WOW","可定通过率", "DOD", "WOW","错误量"};
 		
         NumberFormat numberFormat = NumberFormat.getInstance();  
         numberFormat.setMaximumFractionDigits(2); 

@@ -38,10 +38,6 @@
 										<table class="table-striped table-condensed table-bordered table-hover table-responsive">
 											<caption>点击错误量查看明细</caption>
 											<thead id="theadtitle">
-											<th></th>
-											<th class='text-center btn-primary' colspan="3">请求量</th>
-											<th class='text-center' colspan="3">通过率</th>
-											<th></th>
 											</thead>
 											<tbody id="tbodydata">
 											</tbody>
