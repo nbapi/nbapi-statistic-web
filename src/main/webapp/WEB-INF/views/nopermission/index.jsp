@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>没有权限</title>
 </head>
-<body style="background-color: rgb(11, 255, 183);">
+<body>
 您没有权限访问此页面！如果需要，请联系技术人员开通权限。
 </body>
 </html>

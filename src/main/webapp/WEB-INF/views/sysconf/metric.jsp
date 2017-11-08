@@ -5,10 +5,10 @@
 <head>
 <title></title>
 </head>
-<body style="background-color: rgb(11, 255, 183);">
+<body>
     <div class="modal fade ng-scope" id="addMetricModal" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog" style="background-color: rgb(11, 255, 183);">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="main-box clearfix" style="background-color: rgb(11, 255, 183);">
+    <div class="main-box clearfix">
         <header class="main-box-header clearfix">
             <h2>度量值</h2>
         </header>

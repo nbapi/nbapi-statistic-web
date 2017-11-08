@@ -6,10 +6,10 @@
 <head>
 <title></title>
 </head>
-<body background="" style=" background-color: rgb(11, 255, 183);">
+<body background="">
 <form class="form-horizontal ng-pristine ng-valid">
-    <div class="main-box clearfix" style="  background-color: rgb(11, 255, 183);">
-        <header class="main-box-header clearfix" style=" background-color: rgb(11, 255, 183);">
+    <div class="main-box clearfix">
+        <header class="main-box-header clearfix">
             <div class="btn-group" data-toggle="buttons">
                 <c:forEach var="metric" items="${dimension.metricList}">
                     <label class="btn btn-primary"> <input type="radio" name="options"
@@ -21,7 +21,7 @@
         <div class="main-box-body clearfix">
             <div class="span12">
                 <div class="tabs-wrapper profile-tabs">
-                    <ul class="nav nav-tabs" style="  background-color: rgb(11, 255, 183);">
+                    <ul class="nav nav-tabs">
                         <li class="active"><a showtab="" data-target="#tab-realtime"
                             data-toggle="tab" aria-expanded="true">30分钟实时数据</a></li>
                        
@@ -29,7 +29,7 @@
                             aria-expanded="false"id ="tabComparison">全天比对数据</a></li>
                       
                     </ul>
-                    <div class="tab-content" style="  background-color: rgb(11, 255, 183);">
+                    <div class="tab-content">
                         <div class="tab-pane fade active in" id="tab-realtime">
                             <div id="realtimechart" class="row"></div>
                             <br>
