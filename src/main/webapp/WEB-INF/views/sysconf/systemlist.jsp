@@ -5,7 +5,7 @@
 <head>
 <title>系统录入</title>
 </head>
-<body>
+<body style="background-color: rgb(39, 30, 23);">
     <div class="modal fade ng-scope" id="addSystem" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
