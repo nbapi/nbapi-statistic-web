@@ -5,10 +5,10 @@
 <head>
 <title>系统录入</title>
 </head>
-<body style="background-color: rgb(39, 30, 23);">
+<body style="background-color: rgb(11, 255, 183);">
     <div class="modal fade ng-scope" id="addDimension" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="background-color: rgb(11, 255, 183);">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -66,7 +66,7 @@
     
     <div class="modal fade ng-scope" id="dimenMetricRelationModal" tabindex="-1" role="dialog"
         aria-labelledby="dimenMetricRelationModal" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="background-color: rgb(11, 255, 183);">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -83,7 +83,7 @@
         </div>
     </div>
     
-    <div class="main-box clearfix">
+    <div class="main-box clearfix" style="background-color: rgb(11, 255, 183);">
         <div class="main-box-header clearfix">
             <h4><a href='<c:url value="/sysconf/systemlist"></c:url>'>现有业务系统</a> > <a href='<c:url value="/sysconf/modulelist?id=${system.id}"></c:url>'>${system.systemName}</a> > ${module.itemName}</h4>
         </div>

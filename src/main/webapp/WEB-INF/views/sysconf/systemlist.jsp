@@ -5,10 +5,10 @@
 <head>
 <title>系统录入</title>
 </head>
-<body style="background-color: rgb(39, 30, 23);">
+<body style="background-color: rgb(11, 255, 183);">
     <div class="modal fade ng-scope" id="addSystem" tabindex="-1" role="dialog"
         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="background-color: rgb(11, 255, 183);">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="main-box clearfix">
+    <div class="main-box clearfix" style="background-color: rgb(11, 255, 183);">
         <div class="main-box-header clearfix">
             <h4>现有业务系统</h4>
         </div>
@@ -97,7 +97,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="span12 text-center">
+            <div class="span12 text-center" style="background-color: rgb(11, 255, 183);">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#addSystem">
                     <i class="fa fa-plus-circle fa-lg"></i> 添加下游系统
                 </button>

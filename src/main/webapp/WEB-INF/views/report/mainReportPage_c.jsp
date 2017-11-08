@@ -8,10 +8,10 @@
 <link href="<c:url value="/resources/css/dialog/base.css"></c:url>"
 	rel="stylesheet" type="text/css">
 </head>
-<body background="" style="background-color: rgb(39, 30, 23);">
+<body background="" style="background-color: rgb(11, 255, 183);">
 	<input type="hidden" id="baseUrl" value="${pageContext.request.contextPath}"/> 
 	<form class="form-horizontal ng-pristine ng-valid">
-		<div class="main-box clearfix"> 
+		<div class="main-box clearfix" style="background-color: rgb(11, 255, 183);"> 
 
 			<div class="main-box-body clearfix">
 				<div class="span12">
