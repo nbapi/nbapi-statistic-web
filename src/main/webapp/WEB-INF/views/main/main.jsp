@@ -90,9 +90,9 @@
     <div id="theme-wrapper">
         <%@ include file="header.jsp"%>
         <div id="page-wrapper" class="container">
-            <div class="row">
+            <div class="row" style=" background-color: rgb(255, 188, 106);">
                 <%@ include file="left.jsp"%>
-                <div id="content-wrapper">
+                <div id="content-wrapper" style=" background-color: rgb(255, 146, 96);">
                     <div class="row" style="opacity: 1;">
                         <div class="col-lg-12">
                             <div class="slide-main-container">

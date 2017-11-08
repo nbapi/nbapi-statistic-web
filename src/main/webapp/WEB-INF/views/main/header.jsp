@@ -4,7 +4,7 @@
 
     <div class="container">
         <span id="logo" class="navbar-brand" style="text-align:center;padding-top: 16px">分销数据平台</span>
-        <div class="clearfix">
+        <div class="clearfix" style="background-color: rgb(255, 148, 91);">
             <button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
                 <span class="sr-only">
                     Toggle navigation
