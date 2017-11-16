@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- 为了确保适当的绘制和触屏缩放，需要在 <head> 之中添加 viewport 元数据标签 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>日志统计分析</title>
+<title>分销数据平台</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css"></c:url>" rel="stylesheet"
     type="text/css">
 <link href="<c:url value="/resources/css/font-awesome/css/font-awesome.min.css"></c:url>"

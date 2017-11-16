@@ -26,7 +26,7 @@
 						<div class="tab-content">
 
 							<div class="tab-pane fade active in" id="tab-count">
-								<div class="row">
+								<div class="row row-input">
 									<div class="btn-group">
 										日期范围：
 										<input id="datetimepickerFrom" type="text" >

@@ -1412,11 +1412,11 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 }
 
 .green-bg {
-	background-color: #8bc34a !important;
+	background-color: #262626 !important;
 }
 
 .green-bg-hover:hover {
-    background-color: #8bb00a !important;
+    background-color: #61616d !important;
 }
 
 .purple-bg {
@@ -1842,22 +1842,20 @@ a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.acti
 	font-weight: 300;
 	outline: none;
 	color: #61667c;
-	margin-right: 3px;
 }
 
 .nav-tabs>li>a:hover, .nav-tabs>li>a:focus {
 	border-radius: 0;
-	background-clip: padding-box;
 	border-left: 0;
 	border-bottom: 2px solid #252638;
 	border-top: 0;
 	border-right: 0;
-	color: #353444;
+	color: #61667c;
+	background: #fff;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
 	border-radius: 0;
-	background-clip: padding-box;
 	border-left: 0;
 	border-bottom: 2px solid #252638;
 	border-top: 0;
@@ -9152,3 +9150,28 @@ to {
 
 .table .editable-click, .table a.editable-click, .table a.editable-click:hover{ color: #1eaaf1;}
 .modal-footer .btn-primary:hover{ background: #61616d; border-color: #61616d; color: #fff;}
+
+.form-horizontal .btn-group .btn-primary{background:#fff; border:1px solid #dadbe4; color:#252637;}
+.form-horizontal .btn-group .btn-primary.active{background:#252637;border:1px solid #252637; color:#fff;}
+.tab-content .form-group .btn-success:hover{background:#61616d;}
+.theme-whbl a {
+	color: #61616d;
+}
+.row-input input{
+	border: 1px solid #dadbe4;
+    line-height: 30px;
+    border-radius: 2px;
+    padding: 0 5px;
+    margin: 0 5px 15px;
+}
+.row-input button{
+	background: #252637;
+    border: 0;
+    border-radius: 2px;
+    line-height: 30px;
+    color: #fff;
+}
+
+.row-input button:hover{
+	background: #61616d;
+}
