@@ -38,11 +38,11 @@ public class SessionHelper {
 	private final static String aostokenbean = "session_aos_tokenbean";
 
 	/** 
-	 * session过期时长20分钟
+	 * session过期时长9小时
 	 *
 	 * int SessionHelper.java sessionExpireSeconds
 	 */
-	private static int sessionExpireSeconds = 20 * 60;
+	private static int sessionExpireSeconds = 9 * 60 * 60;
 
 	/**
 	 * 获取用户登录名
