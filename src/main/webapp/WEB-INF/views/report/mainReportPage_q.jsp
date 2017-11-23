@@ -26,7 +26,7 @@
 						<div class="tab-content">
 
 							<div class="tab-pane fade active in" id="tab-count">
-								<div class="row">
+								<div class="row row-input">
 									<div>
 									日期:<input id="datetimepicker" type="text" value="${ds}"/>
 									</div>

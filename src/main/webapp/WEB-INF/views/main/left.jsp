@@ -6,7 +6,7 @@
 			<div id="user-left-box"
 				class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
 
-				<img alt="" src='<c:url value="/resources/image/logo.gif"></c:url>'>
+				<img alt="" src='<c:url value="/resources/image/logo3.gif"></c:url>'>
 
 			</div>
 		</div>
