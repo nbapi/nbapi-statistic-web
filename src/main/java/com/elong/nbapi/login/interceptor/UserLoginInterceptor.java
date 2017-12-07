@@ -60,7 +60,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 			// 校验用户页面访问权限
 			if (!checkInnerUserPermission(request)) {
 				// 去往无权限页面
-				response.sendRedirect(AppConfigUtil.getCommonConfig("aos-nopermissionurl"));
+				response.sendRedirect(AppConfigUtil.getCommonConfig("aos_nopermissionurl"));
 			}
 			return true;
 		}
@@ -70,19 +70,19 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 
 			if (!getInnerUserInfo(request)) {
 				// 调用失败，去aos登录页面
-				response.sendRedirect(AppConfigUtil.getCommonConfig("aos-loginurl") + AppConfigUtil.getCommonConfig("aos-dimension"));
+				response.sendRedirect(AppConfigUtil.getCommonConfig("aos_loginurl") + AppConfigUtil.getCommonConfig("aos_dimension"));
 			} else {
 				// 校验用户页面访问权限
 				if (!checkInnerUserPermission(request)) {
 					// 去往无权限页面
-					response.sendRedirect(AppConfigUtil.getCommonConfig("aos-nopermissionurl"));
+					response.sendRedirect(AppConfigUtil.getCommonConfig("aos_nopermissionurl"));
 				}
 			}
 
 			return true;
 		}
 
-		response.sendRedirect(AppConfigUtil.getCommonConfig("aos-loginurl") + AppConfigUtil.getCommonConfig("aos-dimension"));
+		response.sendRedirect(AppConfigUtil.getCommonConfig("aos_loginurl") + AppConfigUtil.getCommonConfig("aos_dimension"));
 		return true;
 	}
 
@@ -91,18 +91,18 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 				"logentity", "sysconf", "report", "prod" };
 		for (String path : paths) {
 			if (request.getServletPath().contains(path)) {
-				return checkPermission("aos-permission-" + path);
+				return checkPermission("aos_permission_" + path);
 			}
 		}
 		return true;
 	}
 
 	private boolean checkPermission(String perssion_path) {
-		String retPermission = Http.Send("GET", AppConfigUtil.getCommonConfig("aos-permission") + "?username="
+		String retPermission = Http.Send("GET", AppConfigUtil.getCommonConfig("aos_permission") + "?username="
 				+ SessionHelper.getUserBean().getUserName() + AppConfigUtil.getCommonConfig(perssion_path), "", "application/json");
 		JSONObject resultPermission = JSONObject.parseObject(retPermission);
 		if (resultPermission == null || resultPermission.getIntValue("code") != 200 || !resultPermission.getBooleanValue("data")) {
-			log.info("url: " + AppConfigUtil.getCommonConfig("aos-permission") + "?username=" + SessionHelper.getUserBean().getUserName()
+			log.info("url: " + AppConfigUtil.getCommonConfig("aos_permission") + "?username=" + SessionHelper.getUserBean().getUserName()
 					+ AppConfigUtil.getCommonConfig(perssion_path));
 			log.info("用户 [" + SessionHelper.getUserName() + "]无权限访问页面: " + resultPermission);
 			return false;
@@ -121,7 +121,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 		String ticket = request.getParameter("ticket");
 		// 根据ticket获取用户信息
 		String responseUserInfo = Http.Send("POST",
-				AppConfigUtil.getCommonConfig("aos-parseticket") + "?subsystem=" + AppConfigUtil.getCommonConfig("aos-dimension")
+				AppConfigUtil.getCommonConfig("aos_parseticket") + "?subsystem=" + AppConfigUtil.getCommonConfig("aos_dimension")
 						+ "&ticket=" + UrlUtils.urlEncode(ticket, "utf-8"), "", "application/json");
 		log.info("用户登录校验返回： " + responseUserInfo);
 		if (StringUtils.isBlank(responseUserInfo)) {
