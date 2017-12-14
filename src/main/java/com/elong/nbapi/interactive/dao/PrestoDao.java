@@ -2,7 +2,6 @@ package com.elong.nbapi.interactive.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -12,6 +11,9 @@ import java.util.Properties;
 import org.springframework.stereotype.Repository;
 
 import com.elong.nb.common.util.CommonsUtil;
+import com.facebook.presto.jdbc.PrestoConnection;
+import com.facebook.presto.jdbc.PrestoResultSet;
+import com.facebook.presto.jdbc.PrestoStatement;
 
 @Repository
 public class PrestoDao {
@@ -31,7 +33,7 @@ public class PrestoDao {
 		username = p.getProperty("read.jdbc.username");
 	}
 
-	public List<String> getResultDate() {
+	public List<String> showTables(){
 		List<String> result = new ArrayList<String>();
 		Connection cnct = null;
 		Statement stat = null;
@@ -39,11 +41,9 @@ public class PrestoDao {
 		try {
 			cnct = DriverManager.getConnection(url, username, "");
 			stat = cnct.createStatement();
-			rset = stat.executeQuery("show partitions app_proxymethodcount");
+			rset = stat.executeQuery("show tables");
 			while (rset.next()) {
-				String ds_keyvalue = rset.getString(1);
-				String[] keyvalue = ds_keyvalue.split("=");
-				result.add(keyvalue[1]);
+				result.add(rset.getString(1));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,35 +62,42 @@ public class PrestoDao {
 		return result;
 	}
 
-	public List<String> findMethodCount(String datesource) {
-		List<String> result = new ArrayList<String>();
-		Connection cnct = null;
-		Statement ps = null;
-		ResultSet rset = null;
+	public List<String[]> exeSQL(String sql) {
+		List<String[]> result = new ArrayList<String[]>();
+		PrestoConnection pc = null;
+		PrestoStatement ps = null;
+		PrestoResultSet rset = null;
 		try {
-			cnct = DriverManager.getConnection(url, username, "");
-			ps = cnct.createStatement();
-			rset = ps.executeQuery("select * from app_methodcount_day where ds='" + datesource + "'");
+			pc = (PrestoConnection)(DriverManager.getConnection(url, username, ""));
+			ps = (PrestoStatement)(pc.createStatement());
+			rset = (PrestoResultSet)(ps.executeQuery(sql));
+			int c = rset.getMetaData().getColumnCount();
+			if (c <= 0) throw new RuntimeException("Empty column!");
+			String[] titles = new String[c];
+			for (int i=1; i<=c; i++){
+				titles[i-1] = rset.getMetaData().getColumnName(i);
+			}
+			result.add(titles);
 			while (rset.next()) {
-				StringBuffer sb = new StringBuffer();
-				sb.append(rset.getString(1));
-				result.add(sb.toString());
+				String[] row = new String[c];
+				for (int i=1; i<=c; i++){
+					row[i-1] = rset.getString(i);
+				}
+				result.add(row);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw new RuntimeException(e);
 		} finally {
 			try {
 				if (rset != null)
 					rset.close();
 				if (ps != null)
 					ps.close();
-				if (cnct != null)
-					cnct.close();
+				if (pc != null)
+					pc.close();
 			} catch (Exception ee) {
 			}
 		}
 		return result;
 	}
-
 }

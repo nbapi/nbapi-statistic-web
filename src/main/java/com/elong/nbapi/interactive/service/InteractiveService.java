@@ -1,5 +1,9 @@
 package com.elong.nbapi.interactive.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -11,8 +15,20 @@ public class InteractiveService {
 
 	@Resource
 	private PrestoDao dao;
-	
-	public String test(){
-		return dao.findMethodCount("20171204").get(0);
+
+	public Map<String, Object> exeSQL(String sql) {
+		// limit?
+		Map<String, Object> result = new HashMap<>();
+		List<String[]> rst = dao.exeSQL(sql);
+		if (rst == null || rst.size() == 0)
+			return result;
+		String[] title = rst.remove(0);
+		result.put("title", title);
+		result.put("data", rst);
+		return result;
+	}
+
+	public List<String> showTables() {
+		return dao.showTables();
 	}
 }

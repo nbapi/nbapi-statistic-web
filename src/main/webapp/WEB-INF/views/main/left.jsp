@@ -6,7 +6,7 @@
 			<div id="user-left-box"
 				class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
 
-				<img alt="" src='<c:url value="/resources/image/logo3.gif"></c:url>'>
+				<img alt="" src='<c:url value="/resources/image/logoNB.gif"></c:url>'>
 
 			</div>
 		</div>
@@ -67,6 +67,9 @@
 					</ul>
 				</li>
 				
+				<li><a href="<c:url value="/ia/interactivePage"></c:url>"><i
+						class="fa fa-dashboard"></i> <span>自定义查询</span></a>
+				</li>
 			</ul>
 		</div>
 	</section>
