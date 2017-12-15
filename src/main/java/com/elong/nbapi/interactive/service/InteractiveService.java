@@ -17,7 +17,7 @@ public class InteractiveService {
 	private PrestoDao dao;
 
 	public Map<String, Object> exeSQL(String sql) {
-		// limit?
+		if (sql != null && sql.toLowerCase().indexOf("drop") != -1) throw new RuntimeException("求不坑");
 		Map<String, Object> result = new HashMap<>();
 		List<String[]> rst = dao.exeSQL(sql);
 		if (rst == null || rst.size() == 0)
