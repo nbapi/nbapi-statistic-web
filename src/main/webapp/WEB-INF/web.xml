@@ -45,20 +45,19 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter>
-		<filter-name>loginAndPermission</filter-name>
-		<filter-class>com.elong.nbapi.login.filter.LoginAndPermissionFilter</filter-class>
-		<description>判断用户是否登录及有权限</description>
-	</filter>
-	<filter-mapping>
-		<filter-name>loginAndPermission</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>loginAndPermission</filter-name>
+		<filter-class>com.elong.nbapi.login.filter.LoginAndPermissionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginAndPermission</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
