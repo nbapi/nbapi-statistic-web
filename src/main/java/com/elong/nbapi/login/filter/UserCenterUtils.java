@@ -58,9 +58,7 @@ public class UserCenterUtils {
 			return null;
 		// 解析用户信息
 		JSONObject ret = jsonObj.getJSONObject("data");
-		String ticket = ret.getString("ticket");
-		logger.info("ticket = " + ticket + ",which is getTicket(" + token + "," + aos_dimension + ").");
-		return ticket;
+		return ret.getString("ticket");
 	}
 
 	/** 
@@ -84,9 +82,7 @@ public class UserCenterUtils {
 			return null;
 		// 解析用户信息
 		JSONObject ret = jsonObj.getJSONObject("data");
-		String username = ret.getString("username");
-		logger.info("username = " + username + ",which is getUsername(" + ticket + ").");
-		return username;
+		return ret.getString("username");
 	}
 
 	/** 
@@ -98,8 +94,8 @@ public class UserCenterUtils {
 	 */
 	public static boolean hasPermission(String username, String perssion_path) {
 		String retPermission = Http.Send("GET",
-				AppConfigUtil.getCommonConfig("aos_permission") + "?username=" + AppConfigUtil.getCommonConfig(perssion_path)
-						+ AppConfigUtil.getCommonConfig(perssion_path), "", "application/json");
+				AppConfigUtil.getCommonConfig("aos_permission") + "?username=" + username + AppConfigUtil.getCommonConfig(perssion_path),
+				"", "application/json");
 		JSONObject resultPermission = JSONObject.parseObject(retPermission);
 		if (resultPermission == null || resultPermission.getIntValue("code") != 200 || !resultPermission.getBooleanValue("data")) {
 			logger.info("url: " + AppConfigUtil.getCommonConfig("aos_permission") + "?username=" + username

@@ -70,12 +70,14 @@ public class LoginAndPermissionFilter extends OncePerRequestFilter {
 			// 验证是否存在会话
 			HttpSession session = request.getSession();
 			String username = (String) session.getAttribute("username");
+			logger.info("username = " + username + ",which is from session.");
 			if (StringUtils.isNotEmpty(username))
 				return true;
 
 			// 获取ticket，并解票
 			String ticket = request.getParameter("ticket");
 			username = UserCenterUtils.getUsername(ticket);
+			logger.info("username = " + username + ",which is getUsername(" + ticket + ").");
 			if (StringUtils.isNotEmpty(username)) {
 				session.setAttribute("username", username);
 				return true;
@@ -83,7 +85,8 @@ public class LoginAndPermissionFilter extends OncePerRequestFilter {
 			// 获取根域名下token
 			Cookie[] cookies = request.getCookies();
 			if (cookies == null || cookies.length == 0) {
-				throw new IllegalStateException("cookie is null or has no element");
+				logger.error("cookie is null or has no element");
+				return false;
 			}
 			String utoken = null;
 			for (Cookie cookie : cookies) {
@@ -92,17 +95,22 @@ public class LoginAndPermissionFilter extends OncePerRequestFilter {
 				utoken = cookie.getValue();
 			}
 			if (StringUtils.isEmpty(utoken)) {
-				throw new IllegalStateException("utoken doesn't exists!");
+				logger.error("utoken doesn't exists!");
+				return false;
 			}
 			// 根据token和子系统名获取ticket
 			ticket = UserCenterUtils.getTicket(utoken);
+			logger.info("ticket = " + ticket + ",which is getTicket(" + utoken + "," + UserCenterUtils.aos_dimension + ").");
 			if (StringUtils.isEmpty(ticket)) {
-				throw new IllegalStateException("ticket is valid!");
+				logger.error("ticket is valid!");
+				return false;
 			}
 			// 解票
 			username = UserCenterUtils.getUsername(ticket);
+			logger.info("username = " + username + ",which is getUsername(" + ticket + ").");
 			if (StringUtils.isEmpty(username)) {
-				throw new IllegalStateException("decode ticket which get by token fail!");
+				logger.error("decode ticket which get by token fail!");
+				return false;
 			}
 			// 保存会话
 			session.setAttribute("username", username);
