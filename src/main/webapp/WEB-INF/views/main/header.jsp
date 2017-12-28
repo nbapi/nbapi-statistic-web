@@ -48,6 +48,13 @@
                                     度量值
                                 </a>
                             </li>
+                             <li class="item">
+                                <a href="<c:url value='/sysconf/reportlist'></c:url>">
+                                 <i class="fa fa-user">
+                                    </i>
+                                    报表系统
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <!-- <li class="hidden-xxs">
