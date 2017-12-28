@@ -36,6 +36,7 @@ import com.elong.nbapi.common.po.Dimension;
 import com.elong.nbapi.common.po.DimensionMetricRelation;
 import com.elong.nbapi.common.po.Metric;
 import com.elong.nbapi.common.po.Module;
+import com.elong.nbapi.common.po.ReportSystem;
 import com.elong.nbapi.common.utils.DateUtils;
 import com.elong.nbapi.statistic.po.LeftNavParemeter;
 import com.elong.nbapi.statistic.po.CommDimension;
@@ -892,6 +893,10 @@ public class StatisticServiceImpl{
 		Criteria criteria = Criteria.where(BusinessSystem.FIELD_ID).is(businessSystem.getId());
 
 		return baseDao.findOne(Query.query(criteria), BusinessSystem.class);
+	}
+	
+	public List<ReportSystem>getReportSystemList(){
+		return baseDao.findAll(ReportSystem.class);
 	}
 
 }

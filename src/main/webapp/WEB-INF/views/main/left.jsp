@@ -39,8 +39,22 @@
 							</c:forEach>
 						</ul></li>
 				</c:forEach>
-
-
+				
+				
+				<!-- <li><a
+					href='' data-action="reportLeftNav"> <i
+						class="fa fa-dashboard"></i> <span>报表统计</span>
+				</a>
+				<ul class="submenu" id="reportLeftNav"></ul>
+				</li> -->
+				
+				<li><a href="" data-action="reportLeftNav" class="dropdown-toggle"><i
+						class="fa fa-dashboard"></i> <span>报表统计</span><i
+						class="fa fa-angle-right drop-icon"></i></a>
+					<ul class="submenu" id="reportLeftNav">
+					</ul>
+				</li>
+				
 				<li><a href="" class="dropdown-toggle"><i
 						class="fa fa-dashboard"></i> <span>报表统计</span><i
 						class="fa fa-angle-right drop-icon"></i></a>
@@ -74,3 +88,4 @@
 		</div>
 	</section>
 </div>
+<script src="<c:url value="/resources/js/pages/reportlist.js"></c:url>"></script>

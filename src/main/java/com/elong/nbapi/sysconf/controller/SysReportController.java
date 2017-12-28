@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.elong.nbapi.common.po.BusinessSystem;
 import com.elong.nbapi.common.po.Dimension;
 import com.elong.nbapi.common.po.DimensionMetricRelation;
@@ -61,5 +63,12 @@ public class SysReportController {
 	public Map<String , Object>deleteReportSystem(ReportSystem reportSystem){
 		sysReportService.deleteReportSystemById(reportSystem);
 		return new HashMap<String,Object>();
+	}
+	
+	@RequestMapping(value="/reportLeftNav",method=RequestMethod.GET)
+	@ResponseBody
+	public String reportLeftNav(){
+		//return "success";
+		return JSONObject.toJSONString(sysReportService.getReportSystem());
 	}
 }

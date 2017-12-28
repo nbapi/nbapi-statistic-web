@@ -49,18 +49,38 @@ $(function() {
 	
 	$("#btnsavereport").click(function() {
 		var parameters = $("#formsavereport").serialize();
-		
 		$.ajax({
-			url : 'sysconf/addreport',
+			url : 'sysconf/addreport0',
 			type : 'post',
+			async:false,
 			data : parameters,
 			dataType : 'json',
 			success : function(results) {
 				window.location.reload();
 			},
-			error : function() {
+			error : function(e) {
+				alert(e);
 			}
 		});
 	});
+	
+	
+	$('a[data-action="reportLeftNav"]').click(function() {
+		$.ajax({
+			url : 'sysconf/reportLeftNav',
+			async:false,
+			dataType : 'json',
+			success : function(results) {
+				$("#reportLeftNav").empty();
+				$.each(results,function(i,result){
+					$("#reportLeftNav").append("<li><a href='' class ='active'>"+result["dimensionName"]+"</a></li>")
+				});
+			},
+			error : function(e) {
+				alert(JSON.stringify(e));
+			}
+		});
+	});
+	
 	
 });
