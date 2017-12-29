@@ -23,14 +23,14 @@ public class PrestoDao {
 	private String username;
 
 	public PrestoDao() {
-//		Properties p = CommonsUtil.loadProperties("conf/custom/env/jdbc_interactive.properties");
-//		try {
-//			Class.forName(p.getProperty("read.jdbc.driverClassName"));
-//		} catch (ClassNotFoundException e) {
-//			throw new RuntimeException(e);
-//		}
-//		url = p.getProperty("read.jdbc.url");
-//		username = p.getProperty("read.jdbc.username");
+		Properties p = CommonsUtil.loadProperties("conf/custom/env/jdbc_interactive.properties");
+		try {
+			Class.forName(p.getProperty("read.jdbc.driverClassName"));
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		url = p.getProperty("read.jdbc.url");
+		username = p.getProperty("read.jdbc.username");
 	}
 
 	public List<String> showTables(){

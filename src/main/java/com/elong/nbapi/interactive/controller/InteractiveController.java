@@ -19,17 +19,17 @@ import com.elong.nbapi.interactive.service.InteractiveService;
 @RequestMapping(value = "/ia")
 public class InteractiveController {
 
-//	@Autowired
-//	private InteractiveService service;
+	@Autowired
+	private InteractiveService service;
 
 	@RequestMapping(value = "/interactivePage", method = { RequestMethod.GET })
 	public ModelAndView logSummaryPage(HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("/interactive/mainPage");
-//		Map<String, Object> modelMap = new HashMap<String, Object>();
-//		modelMap.put("tables", service.showTables());
-//		mav.addAllObjects(modelMap);
+		mav.setViewName("/interactive/mainPage");
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("tables", service.showTables());
+		mav.addAllObjects(modelMap);
 		return mav;
 	}
 
@@ -39,12 +39,12 @@ public class InteractiveController {
 			HttpServletResponse response) {
 		String sql = request.getParameter("sql");
 		Map<String, Object> rst = null;
-//		try{
-//			rst = service.exeSQL(sql);
-//		}catch(Exception e){
-//			rst = new HashMap<String, Object>();
-//			rst.put("error", e.getMessage());
-//		}
+		try{
+			rst = service.exeSQL(sql);
+		}catch(Exception e){
+			rst = new HashMap<String, Object>();
+			rst.put("error", e.getMessage());
+		}
 		return rst;
 	}
 
