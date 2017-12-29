@@ -4,7 +4,7 @@
 	<groupId>com.elong.nbapi</groupId>
 	<artifactId>nbapi-statistic-web</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 	<name>nbapi-statistic-web</name>
 	<url>http://maven.apache.org</url>
 	<!-- scm git trunk -->
