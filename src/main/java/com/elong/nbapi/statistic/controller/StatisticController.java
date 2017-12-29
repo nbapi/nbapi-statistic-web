@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -37,8 +36,8 @@ import com.elong.nbapi.common.po.Dimension;
 import com.elong.nbapi.common.po.Module;
 import com.elong.nbapi.common.utils.DateUtils;
 import com.elong.nbapi.statistic.constants.Const;
-import com.elong.nbapi.statistic.po.LeftNavParemeter;
 import com.elong.nbapi.statistic.po.CommDimensionTime;
+import com.elong.nbapi.statistic.po.LeftNavParemeter;
 import com.elong.nbapi.statistic.po.TotalDataEntity;
 import com.elong.nbapi.statistic.po.TotalItemEntity;
 import com.elong.nbapi.statistic.service.StatisticServiceImpl;
@@ -49,7 +48,6 @@ import com.elong.nbapi.statistic.service.StatisticServiceImpl;
 public class StatisticController {
 
 	private final Set<LeftNavParemeter> subscribeSet = new HashSet<LeftNavParemeter>();
-	private static final Logger logger = Logger.getLogger("businessMinitorLogger");
 
 	@Autowired
 	private StatisticServiceImpl service;
@@ -220,8 +218,6 @@ public class StatisticController {
 			template.convertAndSend(totalSubscribe, totalItemEntities);
 
 		}
-		logger.info("执行耗时: " + (System.currentTimeMillis() - beginMills) + "ms");
-
 	}
 	
 	
