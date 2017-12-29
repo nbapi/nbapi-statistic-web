@@ -34,9 +34,14 @@
                                 placeholder="关联SQL语句">
                         </div>
                         <div class="form-group">
-                            <label for="aliasNames">别名</label><input type="text"
+                            <label for="reportCols">关联列名称</label><input type="text"
+                                class="form-control" name="reportCols" id="reportCols"
+                                placeholder="关联字段名">
+                        </div>
+                        <div class="form-group">
+                            <label for="aliasNames">关联列别名</label><input type="text"
                                 class="form-control" name="aliasNames" id="aliasNames"
-                                placeholder="请输入联系人所在部门">
+                                placeholder="关联字段别名">
                         </div>
                     </form>
                 </div>
@@ -59,8 +64,8 @@
                             <th class="text-center">维度中文名称</th>
                             <th class="text-center">维度名称</th>
                             <th class="text-center">关联SQL语句</th>
-                            <th class="text-center">关联字段名</th>
-                            <th class="text-center">关联字段别名</th>
+                            <th class="text-center">关联列名称</th>
+                            <th class="text-center">关联列别名</th>
                             <th class="text-center">操作</th>
                         </tr>
                     </thead>

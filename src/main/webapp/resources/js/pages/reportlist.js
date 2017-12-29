@@ -53,10 +53,10 @@ $(function() {
 	});
 
 	
-	$("#btnsavereport").click(function() {
+	$("#btnsavereport").unbind('click').click(function() {
 		var parameters = $("#formsavereport").serialize();
 		$.ajax({
-			url : 'sysconf/addreport0',
+			url : 'sysconf/addreport',
 			type : 'post',
 			async:false,
 			data : parameters,
