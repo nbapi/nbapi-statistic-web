@@ -15,7 +15,7 @@ import com.facebook.presto.jdbc.PrestoConnection;
 import com.facebook.presto.jdbc.PrestoResultSet;
 import com.facebook.presto.jdbc.PrestoStatement;
 
-//@Repository
+@Repository
 public class PrestoDao {
 
 	private String url;
