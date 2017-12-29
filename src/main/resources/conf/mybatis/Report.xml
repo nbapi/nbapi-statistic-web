@@ -24,5 +24,7 @@
 	<select id="queryAllProdSummary_c" resultMap="queryAllProdSummaryResultMap">
 		SELECT * FROM app_prodsummary_ctrip <![CDATA[WHERE ds = #{ds}]]> order by invDate
 	</select>
-	
+	<select id="executSQL" resultType="java.util.Map" statementType="STATEMENT">
+		${sql} <![CDATA[WHERE ds = ${ds}]]>
+	</select>
 </mapper>

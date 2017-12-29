@@ -15,6 +15,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.elong.nbapi.common.dao.IBaseDao;
+import com.elong.nbapi.common.po.BusinessSystem;
 import com.elong.nbapi.common.po.ReportSystem;
 import com.elong.nbapi.sysconf.service.SysReportService;
 
@@ -39,7 +40,7 @@ public class SysReportServiceImpl implements SysReportService {
 	private IBaseDao baseDao;
 
 	@Override
-	public List<ReportSystem> getReportSystem() {
+	public List<ReportSystem> getReportSystems() {
 		return baseDao.findAll(ReportSystem.class);
 	}
 	
@@ -68,11 +69,29 @@ public class SysReportServiceImpl implements SysReportService {
 		if(StringUtils.isNotEmpty(reportSystem.getReportSQL())){
 			findOne.setReportSQL(reportSystem.getReportSQL());
 		}
+		if(StringUtils.isNotEmpty(reportSystem.getReportCols())){
+			findOne.setReportCols(reportSystem.getReportCols());
+		}
 		if(StringUtils.isNotEmpty(reportSystem.getAliasNames())){
 			findOne.setAliasNames(reportSystem.getAliasNames());
 		}
 		baseDao.save(findOne);
 	}
+
+	/** 
+	 * (方法说明描述) 
+	 *
+	 * @return 
+	 *
+	 * @see com.elong.nbapi.sysconf.service.SysReportService#getReportSystem()    
+	 */
+	@Override
+	public ReportSystem getReportSystem(String id) {
+	        Criteria criteria = Criteria.where(BusinessSystem.FIELD_ID).is(id);
+	        Query query = Query.query(criteria);
+	        return baseDao.findOne(query, ReportSystem.class);
+	}
+	
 	
 	
 }

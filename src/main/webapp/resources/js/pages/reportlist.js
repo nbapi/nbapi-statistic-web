@@ -21,6 +21,12 @@ $(function() {
 			    return params;
 			}
 	 });
+	 $('a[data-action="reportCols"]').editable({
+		 params: function(params) {
+			    params.reportCols = params.value;
+			    return params;
+			}
+	 });
 	 $('a[data-action="aliasNames"]').editable({
 		 params: function(params) {
 			    params.aliasNames = params.value;
@@ -73,7 +79,7 @@ $(function() {
 			success : function(results) {
 				$("#reportLeftNav").empty();
 				$.each(results,function(i,result){
-					$("#reportLeftNav").append("<li><a href='' class ='active'>"+result["dimensionName"]+"</a></li>")
+					$("#reportLeftNav").append("<li><a href='/report/prodsummary/rptPage?id="+result["id"]+"&localName="+result["localName"]+"&dimensionName="+result["dimensionName"]+"' class ='active'>"+result["dimensionName"]+"</a></li>")
 				});
 			},
 			error : function(e) {

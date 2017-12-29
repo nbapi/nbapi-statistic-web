@@ -24,8 +24,9 @@ import com.elong.nbapi.common.po.ReportSystem;
  * @since		JDK1.7
  */
 public interface SysReportService {
-	public List<ReportSystem> getReportSystem();
+	public List<ReportSystem> getReportSystems();
 	public void addReportSystem(ReportSystem reportSystem);
 	public void deleteReportSystemById(ReportSystem reportSystem);
 	public void updateReportSystem(ReportSystem reportSystem);
+	public ReportSystem getReportSystem(String id);
 }

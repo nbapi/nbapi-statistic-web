@@ -49,6 +49,9 @@ public class ReportSystem implements Serializable{
 	@Field(value="report_sql")
 	private String reportSQL;
 	
+	@Field(value="report_cols")
+	private String reportCols;
+	
 	@Field(value="alias_names")
 	private String aliasNames;
 	public String getId() {
@@ -74,6 +77,13 @@ public class ReportSystem implements Serializable{
 	}
 	public void setReportSQL(String reportSQL) {
 		this.reportSQL = reportSQL;
+	}
+	
+	public String getReportCols() {
+		return reportCols;
+	}
+	public void setReportCols(String reportCols) {
+		this.reportCols = reportCols;
 	}
 	public String getAliasNames() {
 		return aliasNames;

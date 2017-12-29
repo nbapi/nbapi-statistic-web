@@ -39,7 +39,7 @@ public class SysReportController {
 	@RequestMapping(value="/reportlist",method=RequestMethod.GET)
 	public ModelAndView getReportList(){
 		ModelMap modelMap=new ModelMap();
-		modelMap.addAttribute("reportList", sysReportService.getReportSystem());
+		modelMap.addAttribute("reportList", sysReportService.getReportSystems());
 		String pageName=getPageUrl("reportlist");
 		ModelAndView modelAndView=new ModelAndView(pageName,modelMap);
 		return modelAndView;
@@ -69,6 +69,6 @@ public class SysReportController {
 	@ResponseBody
 	public String reportLeftNav(){
 		//return "success";
-		return JSONObject.toJSONString(sysReportService.getReportSystem());
+		return JSONObject.toJSONString(sysReportService.getReportSystems());
 	}
 }

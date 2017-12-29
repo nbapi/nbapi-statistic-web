@@ -59,6 +59,7 @@
                             <th class="text-center">维度中文名称</th>
                             <th class="text-center">维度名称</th>
                             <th class="text-center">关联SQL语句</th>
+                            <th class="text-center">关联字段名</th>
                             <th class="text-center">关联字段别名</th>
                             <th class="text-center">操作</th>
                         </tr>
@@ -79,6 +80,10 @@
                                     data-url="sysconf/updatereport?id=${report.id}" data-type="text"
                                     data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.reportSQL}</a></td>
                                 <td class="text-center"><a href="javascript:;"
+                                    data-action="reportCols"
+                                    data-url="sysconf/updatereport?id=${report.id}" data-type="text"
+                                    data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.reportCols}</a></td>
+                                 <td class="text-center"><a href="javascript:;"
                                     data-action="aliasNames"
                                     data-url="sysconf/updatereport?id=${report.id}" data-type="text"
                                     data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.aliasNames}</a></td>
