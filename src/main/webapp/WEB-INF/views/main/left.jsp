@@ -39,35 +39,12 @@
 							</c:forEach>
 						</ul></li>
 				</c:forEach>
-				
-				
-				<!-- <li><a
-					href='' data-action="reportLeftNav"> <i
-						class="fa fa-dashboard"></i> <span>报表统计</span>
-				</a>
-				<ul class="submenu" id="reportLeftNav"></ul>
-				</li> -->
-				
 				<li><a href="" data-action="reportLeftNav" class="dropdown-toggle"><i
 						class="fa fa-dashboard"></i> <span>报表统计</span><i
 						class="fa fa-angle-right drop-icon"></i></a>
 					<ul class="submenu" id="reportLeftNav">
 					</ul>
 				</li>
-				
-				<li><a href="" class="dropdown-toggle"><i
-						class="fa fa-dashboard"></i> <span>报表统计</span><i
-						class="fa fa-angle-right drop-icon"></i></a>
-					<ul class="submenu">
-						<li><a
-							href="<c:url value="/report/prodsummary/rptPage_c"></c:url>">携程可卖产品数报表</a></li>
-					</ul>
-					<ul class="submenu">
-						<li><a
-							href="<c:url value="/report/prodsummary/rptPage_q"></c:url>">去哪可卖产品数报表</a></li>
-					</ul>
-				</li>
-
 				<li><a href="" class="dropdown-toggle"><i
 						class="fa fa-dashboard"></i> <span>离线数据分析</span><i
 						class="fa fa-angle-right drop-icon"></i></a>

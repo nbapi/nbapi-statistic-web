@@ -22,38 +22,6 @@ public class ProdSummaryController {
 
 	@Resource
 	private ProdSummaryService service;
-
-	@RequestMapping(value = "/rptPage_q", method = { RequestMethod.GET })
-	public ModelAndView rptPage_q(HttpServletRequest request,
-			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/report/mainReportPage_q");
-		return mav;
-	}
-
-	@RequestMapping(value = "/getRptData_q", method = { RequestMethod.GET })
-	public @ResponseBody
-	Map<String, Object> getRptData_q(HttpServletRequest request,
-			HttpServletResponse response) {
-		String ds = request.getParameter("ds");
-		return service.queryAllProdSummary_q(ds);
-	}
-	
-	@RequestMapping(value = "/rptPage_c", method = { RequestMethod.GET })
-	public ModelAndView rptPage_c(HttpServletRequest request,
-			HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/report/mainReportPage_c");
-		return mav;
-	}
-
-	@RequestMapping(value = "/getRptData_c", method = { RequestMethod.GET })
-	public @ResponseBody
-	Map<String, Object> getRptData_c(HttpServletRequest request,
-			HttpServletResponse response) {
-		String ds = request.getParameter("ds");
-		return service.queryAllProdSummary_c(ds);
-	}
 	
 	@RequestMapping(value = "/rptPage", method = { RequestMethod.GET })
 	public ModelAndView rptPage(ReportSystem reportSystem) {

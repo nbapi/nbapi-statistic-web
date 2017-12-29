@@ -4,27 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.elong.nbapi.report.dao.ProdSummaryDao">
-
-	<resultMap id="queryAllProdSummaryResultMap"
-		type="com.elong.nbapi.report.model.ProdSummary">
-		<result column="id" jdbcType="BIGINT" property="id" />
-		<result column="invDate" jdbcType="VARCHAR" property="invDate" />
-		<result column="prodCount" jdbcType="BIGINT" property="prodCount" />
-		<result column="sellProdCount" jdbcType="BIGINT" property="sellProdCount" />
-		<result column="prePayCount" jdbcType="BIGINT" property="prePayCount" />
-		<result column="selfPayCount" jdbcType="BIGINT" property="selfPayCount" />
-		<result column="roomTypeCount" jdbcType="BIGINT" property="roomTypeCount" />
-		<result column="hotelCount" jdbcType="BIGINT" property="hotelCount" />
-	</resultMap>
-	
-	<select id="queryAllProdSummary_q" resultMap="queryAllProdSummaryResultMap">
-		SELECT * FROM app_prodsummary_qunar <![CDATA[WHERE ds = #{ds}]]> order by invDate
-	</select>
-	
-	<select id="queryAllProdSummary_c" resultMap="queryAllProdSummaryResultMap">
-		SELECT * FROM app_prodsummary_ctrip <![CDATA[WHERE ds = #{ds}]]> order by invDate
-	</select>
 	<select id="executSQL" resultType="java.util.Map" statementType="STATEMENT">
-		${sql} <![CDATA[WHERE ds = ${ds}]]>
+		${sql} <![CDATA[WHERE ds = ${ds}]]> order by invDate
 	</select>
 </mapper>
