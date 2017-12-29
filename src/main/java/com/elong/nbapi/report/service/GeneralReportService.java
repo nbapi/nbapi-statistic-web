@@ -16,24 +16,24 @@ import org.springframework.stereotype.Service;
 import com.elong.nbapi.common.dao.impl.BaseDao;
 import com.elong.nbapi.common.po.BusinessSystem;
 import com.elong.nbapi.common.po.ReportSystem;
-import com.elong.nbapi.report.dao.ProdSummaryDao;
+import com.elong.nbapi.report.dao.GeneralReportDao;
 
 @Service
-public class ProdSummaryService {
+public class GeneralReportService {
 
 	@Resource
-	private ProdSummaryDao dao;
+	private GeneralReportDao dao;
 	@Resource
 	private BaseDao baseDao;
 	
-	public <T> Map<String, Object>queryAllProdSummary(String ds,String id){
+	public <T> Map<String, Object>queryReport(String ds,String id){
 		ReportSystem findOne = getReportSystem(id);
-		String reportSQL = findOne.getReportSQL();
+		String tableName = findOne.getTableName();
 		String aliasNames = findOne.getAliasNames();
 		String[] titles = aliasNames.split(",");
 		List<String> cols = Arrays.asList(findOne.getReportCols().split(","));
 		Map<String, Object> result = new HashMap<>();
-		List<T> records = dao.executSQL(ds, reportSQL);
+		List<T> records = dao.selectReport(ds, tableName);
 		List<String[]> data = new LinkedList<String[]>();
 		for (T t : records) {
 			@SuppressWarnings("unchecked")

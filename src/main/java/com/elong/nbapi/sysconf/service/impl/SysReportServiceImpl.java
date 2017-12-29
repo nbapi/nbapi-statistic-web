@@ -63,11 +63,8 @@ public class SysReportServiceImpl implements SysReportService {
 			findOne.setDimensionName(reportSystem.getDimensionName());
 		}
 		
-		if(StringUtils.isNotEmpty(reportSystem.getLocalName())){
-			findOne.setLocalName(reportSystem.getLocalName());
-		}
-		if(StringUtils.isNotEmpty(reportSystem.getReportSQL())){
-			findOne.setReportSQL(reportSystem.getReportSQL());
+		if(StringUtils.isNotEmpty(reportSystem.getTableName())){
+			findOne.setTableName(reportSystem.getTableName());
 		}
 		if(StringUtils.isNotEmpty(reportSystem.getReportCols())){
 			findOne.setReportCols(reportSystem.getReportCols());

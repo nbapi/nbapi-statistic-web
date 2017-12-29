@@ -9,15 +9,9 @@ $(function() {
 			    return params;
 			}
 	 });
-	 $('a[data-action="localName"]').editable({
+	 $('a[data-action="tableName"]').editable({
 		 params: function(params) {
-			    params.localName = params.value;
-			    return params;
-			}
-	 });
-	 $('a[data-action="reportSQL"]').editable({
-		 params: function(params) {
-			    params.reportSQL = params.value;
+			    params.tableName = params.value;
 			    return params;
 			}
 	 });
@@ -79,7 +73,7 @@ $(function() {
 			success : function(results) {
 				$("#reportLeftNav").empty();
 				$.each(results,function(i,result){
-					$("#reportLeftNav").append("<li><a href='/report/prodsummary/rptPage?id="+result["id"]+"&localName="+result["localName"]+"&dimensionName="+result["dimensionName"]+"' class ='active'>"+result["dimensionName"]+"</a></li>")
+					$("#reportLeftNav").append("<li><a href='/report/generalReport/rptPage?id="+result["id"]+"&dimensionName="+result["dimensionName"]+"' class ='active'>"+result["dimensionName"]+"</a></li>")
 				});
 			},
 			error : function(e) {

@@ -19,7 +19,7 @@ function refreshPage(){
 	var ds = $("#datetimepicker").val();
 	var id=getQueryString("id");
 	$.ajax({
-		url : 'report/prodsummary/getRptData',
+		url : 'report/generalReport/getRptData',
 		type : 'get',
 		data : "ds=" + ds+"&id="+id,
 		dataType : 'json',

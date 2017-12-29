@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.elong.nbapi.common.po.ReportSystem;
-import com.elong.nbapi.report.service.ProdSummaryService;
+import com.elong.nbapi.report.service.GeneralReportService;
 
 @Controller
-@RequestMapping(value = "/report/prodsummary")
-public class ProdSummaryController {
+@RequestMapping(value = "/report/generalReport")
+public class GeneralReportController {
 
 	@Resource
-	private ProdSummaryService service;
+	private GeneralReportService service;
 	
 	@RequestMapping(value = "/rptPage", method = { RequestMethod.GET })
 	public ModelAndView rptPage(ReportSystem reportSystem) {
@@ -38,7 +38,7 @@ public class ProdSummaryController {
 			HttpServletResponse response) {
 		String ds = request.getParameter("ds");
 		String id=request.getParameter("id");
-		return service.queryAllProdSummary(ds,id);
+		return service.queryReport(ds,id);
 	}
 
 }

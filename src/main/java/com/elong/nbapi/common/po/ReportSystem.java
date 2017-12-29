@@ -43,11 +43,9 @@ public class ReportSystem implements Serializable{
 	@Field(value="dimension_name")
 	private String dimensionName;
 	
-	@Field(value="local_name")
-	private String localName;
 	
-	@Field(value="report_sql")
-	private String reportSQL;
+	@Field(value="table_name")
+	private String tableName;
 	
 	@Field(value="report_cols")
 	private String reportCols;
@@ -66,19 +64,14 @@ public class ReportSystem implements Serializable{
 	public void setDimensionName(String dimensionName) {
 		this.dimensionName = dimensionName;
 	}
-	public String getLocalName() {
-		return localName;
-	}
-	public void setLocalName(String localName) {
-		this.localName = localName;
-	}
-	public String getReportSQL() {
-		return reportSQL;
-	}
-	public void setReportSQL(String reportSQL) {
-		this.reportSQL = reportSQL;
-	}
 	
+	
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 	public String getReportCols() {
 		return reportCols;
 	}
@@ -92,12 +85,11 @@ public class ReportSystem implements Serializable{
 		this.aliasNames = aliasNames;
 	}
 	
-	 public ReportSystem(String id, String dimensionName, String localName, String reportSQL,
+	 public ReportSystem(String id, String dimensionName,  String tableName,
 	            String aliasNames) {
 	        super();
 	        this.dimensionName = dimensionName;
-	        this.localName = localName;
-	        this.reportSQL = reportSQL;
+	        this.tableName = tableName;
 	        this.aliasNames = aliasNames;
 	    }
 	 

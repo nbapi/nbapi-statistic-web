@@ -19,7 +19,7 @@
 						<ul class="nav nav-tabs">
 
 							<li id="li-tab-count" class="active">
-								<a id="a-home" data-target="#tab-count" data-toggle="tab">"${reportName}"</a>
+								<a id="a-home" data-target="#tab-count" data-toggle="tab">${reportName}</a>
 							</li>
 
 						</ul>

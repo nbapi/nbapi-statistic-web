@@ -19,29 +19,24 @@
                 <div class="modal-body">
                     <form role="form" id="formsavereport">
                         <div class="form-group">
-                            <label for="dimensionName">维度中文名称</label> <input type="text"
+                            <label for="dimensionName">报表标题</label> <input type="text"
                                 class="form-control" name="dimensionName" id="dimensionName"
-                                placeholder="请输入维度中文名称">
+                                placeholder="报表标题">
                         </div>
                         <div class="form-group">
-                            <label for="localName">维度名称</label> <input type="text"
-                                class="form-control" name="localName" id="localName"
-                                placeholder="请输入维度名称">
-                        </div>
-                        <div class="form-group">
-                            <label for="reportSQL">关联SQL语句</label><input type="text"
-                                class="form-control" name="reportSQL" id="reportSQL"
-                                placeholder="关联SQL语句">
+                            <label for="tableName">关联表名称</label><input type="text"
+                                class="form-control" name="tableName" id="tableName"
+                                placeholder="关联表名称">
                         </div>
                         <div class="form-group">
                             <label for="reportCols">关联列名称</label><input type="text"
                                 class="form-control" name="reportCols" id="reportCols"
-                                placeholder="关联字段名">
+                                placeholder="关联列名称">
                         </div>
                         <div class="form-group">
                             <label for="aliasNames">关联列别名</label><input type="text"
                                 class="form-control" name="aliasNames" id="aliasNames"
-                                placeholder="关联字段别名">
+                                placeholder="关联列别名">
                         </div>
                     </form>
                 </div>
@@ -61,9 +56,8 @@
                 <table class="table table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th class="text-center">维度中文名称</th>
-                            <th class="text-center">维度名称</th>
-                            <th class="text-center">关联SQL语句</th>
+                            <th class="text-center">报表标题</th>
+                            <th class="text-center">关联表名称</th>
                             <th class="text-center">关联列名称</th>
                             <th class="text-center">关联列别名</th>
                             <th class="text-center">操作</th>
@@ -77,13 +71,9 @@
                                     data-url="sysconf/updatereport?id=${report.id}" data-type="text"
                                     data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.dimensionName}</a></td>
                                 <td class="text-center"><a href="javascript:;"
-                                    data-action="localName"
+                                    data-action="tableName"
                                     data-url="sysconf/updatereport?id=${report.id}" data-type="text"
-                                    data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.localName}</a></td>
-                                <td class="text-center"><a href="javascript:;"
-                                    data-action="reportSQL"
-                                    data-url="sysconf/updatereport?id=${report.id}" data-type="text"
-                                    data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.reportSQL}</a></td>
+                                    data-pk="1" data-title="请输入系统名称" class="editable editable-click">${report.tableName}</a></td>
                                 <td class="text-center"><a href="javascript:;"
                                     data-action="reportCols"
                                     data-url="sysconf/updatereport?id=${report.id}" data-type="text"
@@ -107,7 +97,7 @@
             </div>
             <div class="span12 text-center">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#addReport">
-                    <i class="fa fa-plus-circle fa-lg"></i> 添加下游系统
+                    <i class="fa fa-plus-circle fa-lg"></i> 添加报表
                 </button>
             </div>
         </div>

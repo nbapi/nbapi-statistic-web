@@ -8,8 +8,8 @@ import com.elong.nb.db.DataSource;
 
 
 @DataSource("read_datasource")
-public interface ProdSummaryDao {
+public interface GeneralReportDao {
 
-	public <T> List<T> executSQL(@Param("ds") String ds,@Param("sql") String sql);
+	public <T> List<T> selectReport(@Param("ds") String ds,@Param("tableName") String tableName);
 	
 }
