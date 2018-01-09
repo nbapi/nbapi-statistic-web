@@ -65,10 +65,4 @@ public class SysReportController {
 		return new HashMap<String,Object>();
 	}
 	
-	@RequestMapping(value="/reportLeftNav",method=RequestMethod.GET)
-	@ResponseBody
-	public String reportLeftNav(){
-		//return "success";
-		return JSONObject.toJSONString(sysReportService.getReportSystems());
-	}
 }

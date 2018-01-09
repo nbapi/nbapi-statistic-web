@@ -67,7 +67,7 @@ $(function() {
 	
 	$('a[data-action="reportLeftNav"]').click(function() {
 		$.ajax({
-			url : 'sysconf/reportLeftNav',
+			url : 'report/generalReport/reportLeftNav',
 			async:false,
 			dataType : 'json',
 			success : function(results) {
