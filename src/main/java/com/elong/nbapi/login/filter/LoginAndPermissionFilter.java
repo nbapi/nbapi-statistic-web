@@ -135,6 +135,7 @@ public class LoginAndPermissionFilter extends OncePerRequestFilter {
 				"logentity", "sysconf", "report", "prod" };
 		for (String path : paths) {
 			if (request.getServletPath().contains(path)) {
+				logger.info("path = " + request.getServletPath() + " has no permission.");
 				return UserCenterUtils.hasPermission(username, "aos_permission_" + path);
 			}
 		}
