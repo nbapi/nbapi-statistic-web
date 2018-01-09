@@ -63,7 +63,7 @@ mkdir -p $SER_NAME
 cd $SER_NAME
 jar -xvf "$SER_NAME.war"
 #unalias cp
-cp -rf "$BASEDIR/$SER_NAME/env" "$BASEDIR/$SER_NAME/WEB-INF/classes/conf/custom/"
+cp -rf "$BASEDIR/$SER_NAME/conf" "$BASEDIR/$SER_NAME/WEB-INF/classes/conf/custom/"
 rm "$SER_NAME.war"
 rm -rf server.xml
 $BASEDIR/$TOMCAT_NAME/bin/start_tomcat.sh &>/dev/null
