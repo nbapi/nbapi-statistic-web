@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "585a5f8184ae34d29ece8c7c" }, "_class" : "com.elong.hotel.common.po.BusinessSystem", "system_name" : "NB业务监控", "business_line" : "NBAPI", "contact_name" : "hongtao.su", "department" : "分销开发部" }

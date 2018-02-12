@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "585a631884ae34d29ece8c7d" }, "_class" : "com.elong.hotel.common.po.Module", "item_name" : "NB业务监控", "business_type" : "nbapi_minitor", "system_id" : "585a5f8184ae34d29ece8c7c" }
